@@ -1,0 +1,22 @@
+{
+    "date": "2022-04-15",
+    "description": "abc",
+    "campusId": 2,
+    "journalEntryLines": [
+        {
+            "accountId": "41110000-5566-7788-99aa-bbccddeeff00",
+            "businessPartnerId": 2,
+            "description": "ggg",
+            "debit": "550.569",
+            "warehouseId": 1
+        },
+        {
+            "accountId": "41110000-5566-7788-99aa-bbccddeeff00",
+            "businessPartnerId": 2,
+            "description": "ggg",
+            "credit": "550.569",
+            "warehouseId": 1
+        }
+    ],
+    "isSubmit": true
+}

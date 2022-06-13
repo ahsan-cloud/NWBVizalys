@@ -1,0 +1,15 @@
+{
+    "budgetName": "Budget 4",
+    "from": "2022-04-18",
+    "to": "2022-04-19",
+    "budgetLines": [
+        {
+            "accountId": "e188bb29-195a-4d8d-c0dd-08da1ea52f76",
+            "amount": "1750.876"
+        },
+        {
+            "accountId": "11120000-5566-7788-99aa-bbccddeeff00",
+            "amount": "2200.675"
+        }
+    ]
+}

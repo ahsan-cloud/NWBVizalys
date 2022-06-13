@@ -1,0 +1,10 @@
+{
+  "roleName": "Finance",
+  "roleClaims": [
+    {
+      "type": "string",
+      "value": "string",
+      "selected": true
+    }
+  ]
+}

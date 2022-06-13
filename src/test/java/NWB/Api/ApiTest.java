@@ -3,6 +3,7 @@ package NWB.Api;
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,8 +25,13 @@ class ApiTest {
     static String APIbodyTOkenLOgin;
     static List<Header> headerlist = new ArrayList<Header>();
     static public String token;
+
+    //Header Reusable Variables
     static public String name;
     static public String value;
+
+    static public String headerType = "Content-Type";
+    static public String headerMediaType = "application/json";
 
     //static public String OTPtoken="eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJFdmVyeW9uZSxCVUlMVElOXFxVc2VycyxDT05TT0xFIExPR09OLE5UIEFVVEhPUklUWVxcQXV0aGVudGljYXRlZCBVc2VycyxOVCBBVVRIT1JJVFlcXFRoaXMgT3JnYW5pemF0aW9uLExPQ0FMIiwiVXNlcklkIjoiNzMiLCJVc2VyVHlwZXMiOiJJbnB1dHRlcixWaWV3ZXIiLCJleHAiOjE2MDA4NTQyMzcsImlzcyI6InNtZXNrLmluIiwiYXVkIjoicmVhZGVycyJ9.OgPW7c3n84rAzSQC1MMoObsCMpUheuu1_LwXyPEpYts";
 
@@ -51,11 +57,13 @@ class ApiTest {
         public void NWB_TokenLogin()
         {
             System.out.println("----------API_TokenLogIn----------");
-            String APIBody = "{\"email\": \"superadmin@vizalys.com\",\n" +
-                    "  \"password\": \"Admin123!@#\"}";
+//            String APIBody = "{\"email\": \"superadmin@vizalys.com\",\n" +
+//                    "  \"password\": \"Admin123!@#\"}";
+            //Getting API Post Body from the External File
+            File APIBody = new File(System.getProperty("user.dir") + "/allapis/auth/login.json");
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
             //headerlist.add(new Header("device-id","1"));
             //headerlist.add(new Header("user-agents","postman"));
             //headerlist.add(new Header("device-type","mobile"));
@@ -125,20 +133,22 @@ class ApiTest {
             System.out.println("----------***** NWB_POST_User *****-----------");
 
 
-            String APIBody = "{\"userName\": \"ali\",\n" +
-                    "  \"email\": \"ali@gmail.com\",\n" +
-                    "  \"password\": \"Loss@123\",\n" +
-                    "  \"confirmPassword\": \"Loss@123\",\n" +
-                    "  \"userRoles\": [\n" +
-                    "    {\n" +
-                    "      \"roleName\": \"SuperAdmin\",\n" +
-                    "      \"selected\": true\n" +
-                    "    }\n" +
-                    "  ]}";
+//            String APIBody = "{\"userName\": \"ali\",\n" +
+//                    "  \"email\": \"ali@gmail.com\",\n" +
+//                    "  \"password\": \"Loss@123\",\n" +
+//                    "  \"confirmPassword\": \"Loss@123\",\n" +
+//                    "  \"userRoles\": [\n" +
+//                    "    {\n" +
+//                    "      \"roleName\": \"SuperAdmin\",\n" +
+//                    "      \"selected\": true\n" +
+//                    "    }\n" +
+//                    "  ]}";
 
+            //Getting API Post Body from the External File
+            File APIBody = new File(System.getProperty("user.dir") + "/allapis/auth/user.json");
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -194,7 +204,7 @@ class ApiTest {
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -257,7 +267,7 @@ class ApiTest {
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -311,7 +321,7 @@ class ApiTest {
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -361,18 +371,21 @@ class ApiTest {
             System.out.println("----------***** NWB_Post_Roles *****----------");
 
 
-            String APIBody = "{\"roleName\": \"Finance\",\n" +
-                    "  \"roleClaims\": [\n" +
-                    "    {\n" +
-                    "      \"type\": \"string\",\n" +
-                    "      \"value\": \"string\",\n" +
-                    "      \"selected\": true\n" +
-                    "    }\n" +
-                    "  ]}";
+//            String APIBody = "{\"roleName\": \"Finance\",\n" +
+//                    "  \"roleClaims\": [\n" +
+//                    "    {\n" +
+//                    "      \"type\": \"string\",\n" +
+//                    "      \"value\": \"string\",\n" +
+//                    "      \"selected\": true\n" +
+//                    "    }\n" +
+//                    "  ]}";
+
+            //Getting API Post Body from the External File
+            File APIBody = new File(System.getProperty("user.dir") + "/allapis/auth/roles.json");
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -426,7 +439,7 @@ class ApiTest {
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -479,7 +492,7 @@ class ApiTest {
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -540,7 +553,7 @@ class ApiTest {
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -594,7 +607,7 @@ class ApiTest {
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -643,11 +656,14 @@ class ApiTest {
             System.out.println("----------***** NWB_Post_Campus *****----------");
 
 
-            String APIBody = "{\"name\": \"Campus 4\"}";
+//            String APIBody = "{\"name\": \"Campus 4\"}";
+
+            //Getting API Post Body from the External File
+            File APIBody = new File(System.getProperty("user.dir") + "/allapis/profiling/campus.json");
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -655,7 +671,7 @@ class ApiTest {
 //            headerlist.add(new Header("user-host-name","hakim"));
 //            headerlist.add(new Header("user-language","English"));
 //            headerlist.add(new Header("user-host-address","::::0"));
-            //headerlist.add(new Header("AuthToken","bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsIlVzZXJJZCI6IjI2IiwiVXNlclR5cGUiOiJBZG1pbiIsImV4cCI6MTc0OTAzNzk0MCwiaXNzIjoic21lc2suaW4iLCJhdWQiOiJyZWFkZXJzIn0.X7a2_Hf9m5aW8ufa02qJhTlbb-Cg3fX1ljkk5szN6pw "));
+            //headerlist.add(new Header("Authorization","bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiTmF2ZWVkIiwiRW1haWwiOiJzdXBlcmFkbWluQHZpemFseXMuY29tIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiI2OTgxM2MyMy0xNmE3LTRhZmUtYmZlMy0wYjAyMWUzOTJhOGUiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOlsiQWRtaW4iLCJTdXBlckFkbWluIl0sIlBlcm1pc3Npb24iOlsiUGVybWlzc2lvbnMuQXV0aENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJ1c2luZXNzUGFydG5lckNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CdXNpbmVzc1BhcnRuZXJDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkJ1c2luZXNzUGFydG5lckNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQnVzaW5lc3NQYXJ0bmVyQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLk9yZ2FuaXphdGlvbkNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Pcmdhbml6YXRpb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLk9yZ2FuaXphdGlvbkNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuT3JnYW5pemF0aW9uQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlcGFydG1lbnRzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkRlcGFydG1lbnRzQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50c0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGVwYXJ0bWVudHNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuRGVwYXJ0bWVudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlc2lnbmF0aW9uQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkRlc2lnbmF0aW9uQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXNpZ25hdGlvbkNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGVzaWduYXRpb25DbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQ2FtcHVzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkNhbXB1c0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2FtcHVzQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5DYW1wdXNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuV2FyZWhvdXNlQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLldhcmVob3VzZUNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuV2FyZWhvdXNlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5XYXJlaG91c2VDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuTG9jYXRpb25DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuTG9jYXRpb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkxvY2F0aW9uQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5Mb2NhdGlvbkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5CYW5rQWNjb3VudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CYW5rQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmFua0FjY291bnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkJhbmtBY2NvdW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJhbmtTdGF0ZW1lbnRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5DYXNoQWNjb3VudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5DYXNoQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2FzaEFjY291bnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkNhc2hBY2NvdW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkNhdGVnb3JpZXNDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5Qcm9kdWN0c0NsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Qcm9kdWN0c0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUHJvZHVjdHNDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlByb2R1Y3RzQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLldvcmtmbG93U3RhdHVzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLldvcmtmbG93U3RhdHVzQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5Xb3JrZmxvd1N0YXR1c0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuV29ya2Zsb3dTdGF0dXNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuV29ya2Zsb3dDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuV29ya2Zsb3dDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLldvcmtmbG93Q2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5Xb3JrZmxvd0NsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5MZXZlbDRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuTGV2ZWw0Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5MZXZlbDRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkxldmVsNENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5CYW5rUmVjb25DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmFua1JlY29uQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5CYW5rUmVjb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkJhbmtSZWNvbkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5UcmFuc2FjdGlvblJlY29uQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuSW52b2ljZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJpbGxDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5QYXltZW50Q2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQ3JlZGl0Tm90ZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlYml0Tm90ZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5EZWJpdE5vdGVDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkRlYml0Tm90ZUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGViaXROb3RlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkpvdXJuYWxFbnRyeUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Kb3VybmFsRW50cnlDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkpvdXJuYWxFbnRyeUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuSm91cm5hbEVudHJ5Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJ1ZGdldENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CdWRnZXRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkJ1ZGdldENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQnVkZ2V0Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLlJlY2VpcHRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5SZXF1aXNpdGlvbkNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5SZXF1aXNpdGlvbkNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUmVxdWlzaXRpb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlJlcXVpc2l0aW9uQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLlB1cmNoYXNlT3JkZXJDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5HUk5DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuR1JOQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5HUk5DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkdSTkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5Fc3RpbWF0ZWRCdWRnZXRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuRXN0aW1hdGVkQnVkZ2V0Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5Fc3RpbWF0ZWRCdWRnZXRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkVzdGltYXRlZEJ1ZGdldENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5DaGFydE9mQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuR2VuZXJhbExlZGdlckNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuVHJpYWxCYWxhbmNlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5CYWxhbmNlU2hlZXRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlByb2ZpdExvc3NDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkVtcGxveWVlQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkVtcGxveWVlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5FbXBsb3llZUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRW1wbG95ZWVDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQnVkZ2V0UmVwb3J0Q2xhaW1zLlZpZXciXSwiZXhwIjoxNjUyMzAxNjE4LCJpc3MiOiJodHRwOi8vd2FsZWVkLm5ldCIsImF1ZCI6Imh0dHA6Ly93YWxlZWQubmV0In0.cT1IhtQEO0f1AJFVUr4fBuiJ86TPIfjbZrMAxD1cBpI"));
             //headerlist.add(new Header("Authorization","bearer "+token));
             headerlist.add(new Header(name,value));
             Headers headers = new Headers(headerlist);
@@ -701,7 +717,7 @@ class ApiTest {
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -755,7 +771,7 @@ class ApiTest {
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -810,7 +826,7 @@ class ApiTest {
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -860,14 +876,17 @@ class ApiTest {
             System.out.println("----------***** NWB_Post_Store *****----------");
 
 
-            String APIBody = "{\n" +
-                    "    \"name\": \"Store 1\",\n" +
-                    "    \"manager\": \"Kashif\",\n" +
-                    "    \"campusId\": 1}";
+//            String APIBody = "{\n" +
+//                    "    \"name\": \"Store 1\",\n" +
+//                    "    \"manager\": \"Kashif\",\n" +
+//                    "    \"campusId\": 1}";
+
+            //Getting API Post Body from the External File
+            File APIBody = new File(System.getProperty("user.dir") + "/allapis/profiling/store.json");
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -875,9 +894,9 @@ class ApiTest {
 //            headerlist.add(new Header("user-host-name","hakim"));
 //            headerlist.add(new Header("user-language","English"));
 //            headerlist.add(new Header("user-host-address","::::0"));
-            //headerlist.add(new Header("AuthToken","bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsIlVzZXJJZCI6IjI2IiwiVXNlclR5cGUiOiJBZG1pbiIsImV4cCI6MTc0OTAzNzk0MCwiaXNzIjoic21lc2suaW4iLCJhdWQiOiJyZWFkZXJzIn0.X7a2_Hf9m5aW8ufa02qJhTlbb-Cg3fX1ljkk5szN6pw "));
+            headerlist.add(new Header("Authorization","bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiTmF2ZWVkIiwiRW1haWwiOiJzdXBlcmFkbWluQHZpemFseXMuY29tIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiI2OTgxM2MyMy0xNmE3LTRhZmUtYmZlMy0wYjAyMWUzOTJhOGUiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOlsiQWRtaW4iLCJTdXBlckFkbWluIl0sIlBlcm1pc3Npb24iOlsiUGVybWlzc2lvbnMuQXV0aENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJ1c2luZXNzUGFydG5lckNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CdXNpbmVzc1BhcnRuZXJDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkJ1c2luZXNzUGFydG5lckNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQnVzaW5lc3NQYXJ0bmVyQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLk9yZ2FuaXphdGlvbkNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Pcmdhbml6YXRpb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLk9yZ2FuaXphdGlvbkNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuT3JnYW5pemF0aW9uQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlcGFydG1lbnRzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkRlcGFydG1lbnRzQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50c0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGVwYXJ0bWVudHNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuRGVwYXJ0bWVudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlc2lnbmF0aW9uQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkRlc2lnbmF0aW9uQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXNpZ25hdGlvbkNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGVzaWduYXRpb25DbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQ2FtcHVzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkNhbXB1c0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2FtcHVzQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5DYW1wdXNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuV2FyZWhvdXNlQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLldhcmVob3VzZUNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuV2FyZWhvdXNlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5XYXJlaG91c2VDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuTG9jYXRpb25DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuTG9jYXRpb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkxvY2F0aW9uQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5Mb2NhdGlvbkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5CYW5rQWNjb3VudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CYW5rQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmFua0FjY291bnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkJhbmtBY2NvdW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJhbmtTdGF0ZW1lbnRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5DYXNoQWNjb3VudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5DYXNoQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2FzaEFjY291bnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkNhc2hBY2NvdW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkNhdGVnb3JpZXNDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5Qcm9kdWN0c0NsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Qcm9kdWN0c0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUHJvZHVjdHNDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlByb2R1Y3RzQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLldvcmtmbG93U3RhdHVzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLldvcmtmbG93U3RhdHVzQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5Xb3JrZmxvd1N0YXR1c0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuV29ya2Zsb3dTdGF0dXNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuV29ya2Zsb3dDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuV29ya2Zsb3dDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLldvcmtmbG93Q2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5Xb3JrZmxvd0NsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5MZXZlbDRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuTGV2ZWw0Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5MZXZlbDRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkxldmVsNENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5CYW5rUmVjb25DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmFua1JlY29uQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5CYW5rUmVjb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkJhbmtSZWNvbkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5UcmFuc2FjdGlvblJlY29uQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuSW52b2ljZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJpbGxDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5QYXltZW50Q2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQ3JlZGl0Tm90ZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlYml0Tm90ZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5EZWJpdE5vdGVDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkRlYml0Tm90ZUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGViaXROb3RlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkpvdXJuYWxFbnRyeUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Kb3VybmFsRW50cnlDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkpvdXJuYWxFbnRyeUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuSm91cm5hbEVudHJ5Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJ1ZGdldENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CdWRnZXRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkJ1ZGdldENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQnVkZ2V0Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLlJlY2VpcHRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5SZXF1aXNpdGlvbkNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5SZXF1aXNpdGlvbkNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUmVxdWlzaXRpb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlJlcXVpc2l0aW9uQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLlB1cmNoYXNlT3JkZXJDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5HUk5DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuR1JOQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5HUk5DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkdSTkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5Fc3RpbWF0ZWRCdWRnZXRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuRXN0aW1hdGVkQnVkZ2V0Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5Fc3RpbWF0ZWRCdWRnZXRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkVzdGltYXRlZEJ1ZGdldENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5DaGFydE9mQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuR2VuZXJhbExlZGdlckNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuVHJpYWxCYWxhbmNlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5CYWxhbmNlU2hlZXRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlByb2ZpdExvc3NDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkVtcGxveWVlQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkVtcGxveWVlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5FbXBsb3llZUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRW1wbG95ZWVDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQnVkZ2V0UmVwb3J0Q2xhaW1zLlZpZXciXSwiZXhwIjoxNjUyMzAxNjE4LCJpc3MiOiJodHRwOi8vd2FsZWVkLm5ldCIsImF1ZCI6Imh0dHA6Ly93YWxlZWQubmV0In0.cT1IhtQEO0f1AJFVUr4fBuiJ86TPIfjbZrMAxD1cBpI "));
             //headerlist.add(new Header("Authorization","bearer "+token));
-            headerlist.add(new Header(name,value));
+            //headerlist.add(new Header(name,value));
             Headers headers = new Headers(headerlist);
 
 
@@ -921,7 +940,7 @@ class ApiTest {
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -975,7 +994,7 @@ class ApiTest {
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -1032,7 +1051,7 @@ class ApiTest {
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -1082,22 +1101,25 @@ class ApiTest {
             System.out.println("----------***** NWB_Post_BusinessPartner *****----------");
 
 
-            String APIBody = "{\"businessPartnerType\": 4,\n" +
-                    "    \"name\": \"RA\",\n" +
-                    "    \"address\": \"E - 434\",\n" +
-                    "    \"phone\": \"0215895623\",\n" +
-                    "    \"mobile\": \"0334859566\",\n" +
-                    "    \"incomeTaxId\": \"02\",\n" +
-                    "    \"salesTaxId\": \"01\",\n" +
-                    "    \"bankAccountTitle\": \"RA\",\n" +
-                    "    \"bankAccountNumber\": \"426456553623654\",\n" +
-                    "    \"accountPayableId\": \"22140000-5566-7788-99aa-bbccddeeff00\",\n" +
-                    "    \"accountReceivableId\": \"12220000-5566-7788-99aa-bbccddeeff00\",\n" +
-                    "    \"cnic\": \"42259895665656\"}";
+//            String APIBody = "{\"businessPartnerType\": 4,\n" +
+//                    "    \"name\": \"RA\",\n" +
+//                    "    \"address\": \"E - 434\",\n" +
+//                    "    \"phone\": \"0215895623\",\n" +
+//                    "    \"mobile\": \"0334859566\",\n" +
+//                    "    \"incomeTaxId\": \"02\",\n" +
+//                    "    \"salesTaxId\": \"01\",\n" +
+//                    "    \"bankAccountTitle\": \"RA\",\n" +
+//                    "    \"bankAccountNumber\": \"426456553623654\",\n" +
+//                    "    \"accountPayableId\": \"22140000-5566-7788-99aa-bbccddeeff00\",\n" +
+//                    "    \"accountReceivableId\": \"12220000-5566-7788-99aa-bbccddeeff00\",\n" +
+//                    "    \"cnic\": \"42259895665656\"}";
+
+            //Getting API Post Body from the External File
+            File APIBody = new File(System.getProperty("user.dir") + "/allapis/profiling/businesspartner.json");
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -1105,7 +1127,7 @@ class ApiTest {
 //            headerlist.add(new Header("user-host-name","hakim"));
 //            headerlist.add(new Header("user-language","English"));
 //            headerlist.add(new Header("user-host-address","::::0"));
-            //headerlist.add(new Header("AuthToken","bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsIlVzZXJJZCI6IjI2IiwiVXNlclR5cGUiOiJBZG1pbiIsImV4cCI6MTc0OTAzNzk0MCwiaXNzIjoic21lc2suaW4iLCJhdWQiOiJyZWFkZXJzIn0.X7a2_Hf9m5aW8ufa02qJhTlbb-Cg3fX1ljkk5szN6pw "));
+            //headerlist.add(new Header("Authorization","bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiTmF2ZWVkIiwiRW1haWwiOiJzdXBlcmFkbWluQHZpemFseXMuY29tIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiI2OTgxM2MyMy0xNmE3LTRhZmUtYmZlMy0wYjAyMWUzOTJhOGUiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOlsiQWRtaW4iLCJTdXBlckFkbWluIl0sIlBlcm1pc3Npb24iOlsiUGVybWlzc2lvbnMuQXV0aENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJ1c2luZXNzUGFydG5lckNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CdXNpbmVzc1BhcnRuZXJDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkJ1c2luZXNzUGFydG5lckNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQnVzaW5lc3NQYXJ0bmVyQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLk9yZ2FuaXphdGlvbkNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Pcmdhbml6YXRpb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLk9yZ2FuaXphdGlvbkNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuT3JnYW5pemF0aW9uQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlcGFydG1lbnRzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkRlcGFydG1lbnRzQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50c0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGVwYXJ0bWVudHNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuRGVwYXJ0bWVudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlc2lnbmF0aW9uQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkRlc2lnbmF0aW9uQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXNpZ25hdGlvbkNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGVzaWduYXRpb25DbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQ2FtcHVzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkNhbXB1c0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2FtcHVzQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5DYW1wdXNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuV2FyZWhvdXNlQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLldhcmVob3VzZUNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuV2FyZWhvdXNlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5XYXJlaG91c2VDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuTG9jYXRpb25DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuTG9jYXRpb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkxvY2F0aW9uQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5Mb2NhdGlvbkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5CYW5rQWNjb3VudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CYW5rQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmFua0FjY291bnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkJhbmtBY2NvdW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJhbmtTdGF0ZW1lbnRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5DYXNoQWNjb3VudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5DYXNoQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2FzaEFjY291bnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkNhc2hBY2NvdW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkNhdGVnb3JpZXNDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5Qcm9kdWN0c0NsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Qcm9kdWN0c0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUHJvZHVjdHNDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlByb2R1Y3RzQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLldvcmtmbG93U3RhdHVzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLldvcmtmbG93U3RhdHVzQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5Xb3JrZmxvd1N0YXR1c0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuV29ya2Zsb3dTdGF0dXNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuV29ya2Zsb3dDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuV29ya2Zsb3dDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLldvcmtmbG93Q2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5Xb3JrZmxvd0NsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5MZXZlbDRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuTGV2ZWw0Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5MZXZlbDRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkxldmVsNENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5CYW5rUmVjb25DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmFua1JlY29uQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5CYW5rUmVjb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkJhbmtSZWNvbkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5UcmFuc2FjdGlvblJlY29uQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuSW52b2ljZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJpbGxDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5QYXltZW50Q2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQ3JlZGl0Tm90ZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlYml0Tm90ZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5EZWJpdE5vdGVDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkRlYml0Tm90ZUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGViaXROb3RlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkpvdXJuYWxFbnRyeUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Kb3VybmFsRW50cnlDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkpvdXJuYWxFbnRyeUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuSm91cm5hbEVudHJ5Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJ1ZGdldENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CdWRnZXRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkJ1ZGdldENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQnVkZ2V0Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLlJlY2VpcHRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5SZXF1aXNpdGlvbkNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5SZXF1aXNpdGlvbkNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUmVxdWlzaXRpb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlJlcXVpc2l0aW9uQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLlB1cmNoYXNlT3JkZXJDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5HUk5DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuR1JOQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5HUk5DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkdSTkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5Fc3RpbWF0ZWRCdWRnZXRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuRXN0aW1hdGVkQnVkZ2V0Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5Fc3RpbWF0ZWRCdWRnZXRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkVzdGltYXRlZEJ1ZGdldENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5DaGFydE9mQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuR2VuZXJhbExlZGdlckNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuVHJpYWxCYWxhbmNlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5CYWxhbmNlU2hlZXRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlByb2ZpdExvc3NDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkVtcGxveWVlQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkVtcGxveWVlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5FbXBsb3llZUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRW1wbG95ZWVDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQnVkZ2V0UmVwb3J0Q2xhaW1zLlZpZXciXSwiZXhwIjoxNjUyMzAxNjE4LCJpc3MiOiJodHRwOi8vd2FsZWVkLm5ldCIsImF1ZCI6Imh0dHA6Ly93YWxlZWQubmV0In0.cT1IhtQEO0f1AJFVUr4fBuiJ86TPIfjbZrMAxD1cBpI"));
             //headerlist.add(new Header("Authorization","bearer "+token));
             headerlist.add(new Header(name,value));
             Headers headers = new Headers(headerlist);
@@ -1139,6 +1161,58 @@ class ApiTest {
 //            }
         }
 
+        @Test
+        @Order(62)
+        public void NWB_Get_Budget()
+        {
+            System.out.println("----------***** NWB_Get_Budget *****----------");
+
+
+            String APIBody = "{}";
+
+
+            List<Header> headerlist = new ArrayList<Header>();
+            headerlist.add(new Header(headerType, headerMediaType));
+//            headerlist.add(new Header("device-id","1"));
+//            headerlist.add(new Header("user-agents","postman"));
+//            headerlist.add(new Header("device-type","web")); //check this
+//            headerlist.add(new Header("license-key","213DD508-876F-4DD3-BBC1-0A33CC54A6C0")); //check this
+//            headerlist.add(new Header("user-host-name","hakim"));
+//            headerlist.add(new Header("user-language","English"));
+//            headerlist.add(new Header("user-host-address","::::0"));
+            //headerlist.add(new Header("AuthToken","bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsIlVzZXJJZCI6IjI2IiwiVXNlclR5cGUiOiJBZG1pbiIsImV4cCI6MTc0OTAzNzk0MCwiaXNzIjoic21lc2suaW4iLCJhdWQiOiJyZWFkZXJzIn0.X7a2_Hf9m5aW8ufa02qJhTlbb-Cg3fX1ljkk5szN6pw "));
+            //headerlist.add(new Header("Authorization","bearer "+token));
+            headerlist.add(new Header(name,value));
+            Headers headers = new Headers(headerlist);
+
+
+
+            Response r = given().body(APIBody).
+                    headers(headers).
+                    when().
+                    get("/api/Budget");
+
+            //r.prettyPrint();
+            String body = r.getBody().asString();
+            //ResponseBody  body = r.getBody();
+            System.out.println(body);
+
+            int statusCode = r.getStatusCode();
+            System.out.println(statusCode);
+
+            //Assert that correct status code is returned.
+            //assertEquals(statusCode /*actual value*/, 200 /*expected value*/);
+
+
+//            String bodyAsString = body.asString();
+//            System.out.println(bodyAsString);
+
+//            if(!bodyAsString.contains("Data Fetched Successfully from Database") || !bodyAsString.contains("true"))
+//            {
+//                System.out.println("(API responded wrong)");
+//                fail();
+//            }
+        }
 
         @Test
         @Order(20)
@@ -1151,7 +1225,7 @@ class ApiTest {
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -1205,7 +1279,7 @@ class ApiTest {
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -1271,7 +1345,7 @@ class ApiTest {
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -1321,15 +1395,18 @@ class ApiTest {
             System.out.println("----------***** NWB_Put_Category *****----------");
 
 
-            String APIBody = "{\"name\": \"Utensils\",\n" +
-                    "  \"inventoryAccountId\": \"51120000-5566-7788-99aa-bbccddeeff00\",\n" +
-                    "  \"revenueAccountId\": \"22210000-5566-7788-99aa-bbccddeeff00\",\n" +
-                    "  \"costAccountId\": \"41110000-5566-7788-99aa-bbccddeeff00\",\n" +
-                    "  \"id\": 0}";
+//            String APIBody = "{\"name\": \"Utensils\",\n" +
+//                    "  \"inventoryAccountId\": \"51120000-5566-7788-99aa-bbccddeeff00\",\n" +
+//                    "  \"revenueAccountId\": \"22210000-5566-7788-99aa-bbccddeeff00\",\n" +
+//                    "  \"costAccountId\": \"41110000-5566-7788-99aa-bbccddeeff00\",\n" +
+//                    "  \"id\": 0}";
+
+            //Getting API Post Body from the External File
+            File APIBody = new File(System.getProperty("user.dir") + "/allapis/profiling/category.json");
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -1337,7 +1414,7 @@ class ApiTest {
 //            headerlist.add(new Header("user-host-name","hakim"));
 //            headerlist.add(new Header("user-language","English"));
 //            headerlist.add(new Header("user-host-address","::::0"));
-            //headerlist.add(new Header("AuthToken","bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsIlVzZXJJZCI6IjI2IiwiVXNlclR5cGUiOiJBZG1pbiIsImV4cCI6MTc0OTAzNzk0MCwiaXNzIjoic21lc2suaW4iLCJhdWQiOiJyZWFkZXJzIn0.X7a2_Hf9m5aW8ufa02qJhTlbb-Cg3fX1ljkk5szN6pw "));
+            //headerlist.add(new Header("Authorization","bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiTmF2ZWVkIiwiRW1haWwiOiJzdXBlcmFkbWluQHZpemFseXMuY29tIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiI2OTgxM2MyMy0xNmE3LTRhZmUtYmZlMy0wYjAyMWUzOTJhOGUiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOlsiQWRtaW4iLCJTdXBlckFkbWluIl0sIlBlcm1pc3Npb24iOlsiUGVybWlzc2lvbnMuQXV0aENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJ1c2luZXNzUGFydG5lckNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CdXNpbmVzc1BhcnRuZXJDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkJ1c2luZXNzUGFydG5lckNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQnVzaW5lc3NQYXJ0bmVyQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLk9yZ2FuaXphdGlvbkNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Pcmdhbml6YXRpb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLk9yZ2FuaXphdGlvbkNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuT3JnYW5pemF0aW9uQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlcGFydG1lbnRzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkRlcGFydG1lbnRzQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50c0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGVwYXJ0bWVudHNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuRGVwYXJ0bWVudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlc2lnbmF0aW9uQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkRlc2lnbmF0aW9uQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXNpZ25hdGlvbkNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGVzaWduYXRpb25DbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQ2FtcHVzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkNhbXB1c0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2FtcHVzQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5DYW1wdXNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuV2FyZWhvdXNlQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLldhcmVob3VzZUNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuV2FyZWhvdXNlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5XYXJlaG91c2VDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuTG9jYXRpb25DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuTG9jYXRpb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkxvY2F0aW9uQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5Mb2NhdGlvbkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5CYW5rQWNjb3VudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CYW5rQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmFua0FjY291bnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkJhbmtBY2NvdW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJhbmtTdGF0ZW1lbnRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5DYXNoQWNjb3VudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5DYXNoQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2FzaEFjY291bnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkNhc2hBY2NvdW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkNhdGVnb3JpZXNDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5Qcm9kdWN0c0NsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Qcm9kdWN0c0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUHJvZHVjdHNDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlByb2R1Y3RzQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLldvcmtmbG93U3RhdHVzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLldvcmtmbG93U3RhdHVzQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5Xb3JrZmxvd1N0YXR1c0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuV29ya2Zsb3dTdGF0dXNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuV29ya2Zsb3dDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuV29ya2Zsb3dDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLldvcmtmbG93Q2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5Xb3JrZmxvd0NsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5MZXZlbDRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuTGV2ZWw0Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5MZXZlbDRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkxldmVsNENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5CYW5rUmVjb25DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmFua1JlY29uQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5CYW5rUmVjb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkJhbmtSZWNvbkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5UcmFuc2FjdGlvblJlY29uQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuSW52b2ljZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJpbGxDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5QYXltZW50Q2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQ3JlZGl0Tm90ZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlYml0Tm90ZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5EZWJpdE5vdGVDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkRlYml0Tm90ZUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGViaXROb3RlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkpvdXJuYWxFbnRyeUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Kb3VybmFsRW50cnlDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkpvdXJuYWxFbnRyeUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuSm91cm5hbEVudHJ5Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJ1ZGdldENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CdWRnZXRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkJ1ZGdldENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQnVkZ2V0Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLlJlY2VpcHRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5SZXF1aXNpdGlvbkNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5SZXF1aXNpdGlvbkNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUmVxdWlzaXRpb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlJlcXVpc2l0aW9uQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLlB1cmNoYXNlT3JkZXJDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5HUk5DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuR1JOQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5HUk5DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkdSTkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5Fc3RpbWF0ZWRCdWRnZXRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuRXN0aW1hdGVkQnVkZ2V0Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5Fc3RpbWF0ZWRCdWRnZXRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkVzdGltYXRlZEJ1ZGdldENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5DaGFydE9mQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuR2VuZXJhbExlZGdlckNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuVHJpYWxCYWxhbmNlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5CYWxhbmNlU2hlZXRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlByb2ZpdExvc3NDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkVtcGxveWVlQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkVtcGxveWVlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5FbXBsb3llZUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRW1wbG95ZWVDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQnVkZ2V0UmVwb3J0Q2xhaW1zLlZpZXciXSwiZXhwIjoxNjUyMzAxNjE4LCJpc3MiOiJodHRwOi8vd2FsZWVkLm5ldCIsImF1ZCI6Imh0dHA6Ly93YWxlZWQubmV0In0.cT1IhtQEO0f1AJFVUr4fBuiJ86TPIfjbZrMAxD1cBpI"));
             //headerlist.add(new Header("Authorization","bearer "+token));
             headerlist.add(new Header(name,value));
             Headers headers = new Headers(headerlist);
@@ -1383,7 +1460,7 @@ class ApiTest {
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -1437,7 +1514,7 @@ class ApiTest {
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -1495,7 +1572,7 @@ class ApiTest {
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -1545,19 +1622,22 @@ class ApiTest {
             System.out.println("----------***** NWB_Post_Product *****----------");
 
 
-            String APIBody = "{\"id\": 0,\n" +
-                    "    \"productName\": \"Juicers\",\n" +
-                    "    \"productType\": 0,\n" +
-                    "    \"categoryId\": 1,\n" +
-                    "    \"categoryName\": \"Electronics\",\n" +
-                    "    \"salesPrice\": \"12000.354\",\n" +
-                    "    \"purchasePrice\": \"11000.454\",\n" +
-                    "    \"salesTax\": \"5\",\n" +
-                    "    \"barcode\": \"abcd\"}";
+//            String APIBody = "{\"id\": 0,\n" +
+//                    "    \"productName\": \"Juicers\",\n" +
+//                    "    \"productType\": 0,\n" +
+//                    "    \"categoryId\": 1,\n" +
+//                    "    \"categoryName\": \"Electronics\",\n" +
+//                    "    \"salesPrice\": \"12000.354\",\n" +
+//                    "    \"purchasePrice\": \"11000.454\",\n" +
+//                    "    \"salesTax\": \"5\",\n" +
+//                    "    \"barcode\": \"abcd\"}";
+
+            //Getting API Post Body from the External File
+            File APIBody = new File(System.getProperty("user.dir") + "/allapis/profiling/product.json");
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -1565,7 +1645,7 @@ class ApiTest {
 //            headerlist.add(new Header("user-host-name","hakim"));
 //            headerlist.add(new Header("user-language","English"));
 //            headerlist.add(new Header("user-host-address","::::0"));
-            //headerlist.add(new Header("AuthToken","bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsIlVzZXJJZCI6IjI2IiwiVXNlclR5cGUiOiJBZG1pbiIsImV4cCI6MTc0OTAzNzk0MCwiaXNzIjoic21lc2suaW4iLCJhdWQiOiJyZWFkZXJzIn0.X7a2_Hf9m5aW8ufa02qJhTlbb-Cg3fX1ljkk5szN6pw "));
+            //headerlist.add(new Header("Authorization","bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiTmF2ZWVkIiwiRW1haWwiOiJzdXBlcmFkbWluQHZpemFseXMuY29tIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiI2OTgxM2MyMy0xNmE3LTRhZmUtYmZlMy0wYjAyMWUzOTJhOGUiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOlsiQWRtaW4iLCJTdXBlckFkbWluIl0sIlBlcm1pc3Npb24iOlsiUGVybWlzc2lvbnMuQXV0aENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJ1c2luZXNzUGFydG5lckNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CdXNpbmVzc1BhcnRuZXJDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkJ1c2luZXNzUGFydG5lckNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQnVzaW5lc3NQYXJ0bmVyQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLk9yZ2FuaXphdGlvbkNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Pcmdhbml6YXRpb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLk9yZ2FuaXphdGlvbkNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuT3JnYW5pemF0aW9uQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlcGFydG1lbnRzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkRlcGFydG1lbnRzQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50c0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGVwYXJ0bWVudHNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuRGVwYXJ0bWVudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlc2lnbmF0aW9uQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkRlc2lnbmF0aW9uQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXNpZ25hdGlvbkNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGVzaWduYXRpb25DbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQ2FtcHVzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkNhbXB1c0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2FtcHVzQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5DYW1wdXNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuV2FyZWhvdXNlQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLldhcmVob3VzZUNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuV2FyZWhvdXNlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5XYXJlaG91c2VDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuTG9jYXRpb25DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuTG9jYXRpb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkxvY2F0aW9uQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5Mb2NhdGlvbkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5CYW5rQWNjb3VudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CYW5rQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmFua0FjY291bnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkJhbmtBY2NvdW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJhbmtTdGF0ZW1lbnRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5DYXNoQWNjb3VudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5DYXNoQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2FzaEFjY291bnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkNhc2hBY2NvdW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkNhdGVnb3JpZXNDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5Qcm9kdWN0c0NsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Qcm9kdWN0c0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUHJvZHVjdHNDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlByb2R1Y3RzQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLldvcmtmbG93U3RhdHVzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLldvcmtmbG93U3RhdHVzQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5Xb3JrZmxvd1N0YXR1c0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuV29ya2Zsb3dTdGF0dXNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuV29ya2Zsb3dDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuV29ya2Zsb3dDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLldvcmtmbG93Q2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5Xb3JrZmxvd0NsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5MZXZlbDRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuTGV2ZWw0Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5MZXZlbDRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkxldmVsNENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5CYW5rUmVjb25DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmFua1JlY29uQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5CYW5rUmVjb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkJhbmtSZWNvbkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5UcmFuc2FjdGlvblJlY29uQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuSW52b2ljZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJpbGxDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5QYXltZW50Q2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQ3JlZGl0Tm90ZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlYml0Tm90ZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5EZWJpdE5vdGVDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkRlYml0Tm90ZUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGViaXROb3RlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkpvdXJuYWxFbnRyeUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Kb3VybmFsRW50cnlDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkpvdXJuYWxFbnRyeUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuSm91cm5hbEVudHJ5Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJ1ZGdldENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CdWRnZXRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkJ1ZGdldENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQnVkZ2V0Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLlJlY2VpcHRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5SZXF1aXNpdGlvbkNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5SZXF1aXNpdGlvbkNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUmVxdWlzaXRpb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlJlcXVpc2l0aW9uQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLlB1cmNoYXNlT3JkZXJDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5HUk5DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuR1JOQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5HUk5DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkdSTkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5Fc3RpbWF0ZWRCdWRnZXRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuRXN0aW1hdGVkQnVkZ2V0Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5Fc3RpbWF0ZWRCdWRnZXRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkVzdGltYXRlZEJ1ZGdldENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5DaGFydE9mQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuR2VuZXJhbExlZGdlckNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuVHJpYWxCYWxhbmNlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5CYWxhbmNlU2hlZXRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlByb2ZpdExvc3NDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkVtcGxveWVlQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkVtcGxveWVlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5FbXBsb3llZUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRW1wbG95ZWVDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQnVkZ2V0UmVwb3J0Q2xhaW1zLlZpZXciXSwiZXhwIjoxNjUyMzAxNjE4LCJpc3MiOiJodHRwOi8vd2FsZWVkLm5ldCIsImF1ZCI6Imh0dHA6Ly93YWxlZWQubmV0In0.cT1IhtQEO0f1AJFVUr4fBuiJ86TPIfjbZrMAxD1cBpI"));
             //headerlist.add(new Header("Authorization","bearer "+token));
             headerlist.add(new Header(name,value));
             Headers headers = new Headers(headerlist);
@@ -1610,7 +1690,7 @@ class ApiTest {
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -1664,7 +1744,7 @@ class ApiTest {
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -1726,7 +1806,7 @@ class ApiTest {
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -1776,16 +1856,19 @@ class ApiTest {
             System.out.println("----------***** NWB_Post_CashAccount *****----------");
 
 
-            String APIBody = "{\"id\": 0,\n" +
-                    "  \"cashAccountName\": \"Cash Account 1\",\n" +
-                    "  \"handler\": \"Hasnain\",\n" +
-                    "  \"openingBalance\": 500.976,\n" +
-                    "  \"openingBalanceDate\": \"2022-04-07T09:28:31.266Z\",\n" +
-                    "  \"campusId\": 2}";
+//            String APIBody = "{\"id\": 0,\n" +
+//                    "  \"cashAccountName\": \"Cash Account 1\",\n" +
+//                    "  \"handler\": \"Hasnain\",\n" +
+//                    "  \"openingBalance\": 500.976,\n" +
+//                    "  \"openingBalanceDate\": \"2022-04-07T09:28:31.266Z\",\n" +
+//                    "  \"campusId\": 2}";
+
+            //Getting API Post Body from the External File
+            File APIBody = new File(System.getProperty("user.dir") + "/allapis/finance/cashaccount.json");
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -1793,7 +1876,7 @@ class ApiTest {
 //            headerlist.add(new Header("user-host-name","hakim"));
 //            headerlist.add(new Header("user-language","English"));
 //            headerlist.add(new Header("user-host-address","::::0"));
-            //headerlist.add(new Header("AuthToken","bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsIlVzZXJJZCI6IjI2IiwiVXNlclR5cGUiOiJBZG1pbiIsImV4cCI6MTc0OTAzNzk0MCwiaXNzIjoic21lc2suaW4iLCJhdWQiOiJyZWFkZXJzIn0.X7a2_Hf9m5aW8ufa02qJhTlbb-Cg3fX1ljkk5szN6pw "));
+            //headerlist.add(new Header("Authorization","bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiTmF2ZWVkIiwiRW1haWwiOiJzdXBlcmFkbWluQHZpemFseXMuY29tIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiI2OTgxM2MyMy0xNmE3LTRhZmUtYmZlMy0wYjAyMWUzOTJhOGUiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOlsiQWRtaW4iLCJTdXBlckFkbWluIl0sIlBlcm1pc3Npb24iOlsiUGVybWlzc2lvbnMuQXV0aENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJ1c2luZXNzUGFydG5lckNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CdXNpbmVzc1BhcnRuZXJDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkJ1c2luZXNzUGFydG5lckNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQnVzaW5lc3NQYXJ0bmVyQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLk9yZ2FuaXphdGlvbkNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Pcmdhbml6YXRpb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLk9yZ2FuaXphdGlvbkNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuT3JnYW5pemF0aW9uQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlcGFydG1lbnRzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkRlcGFydG1lbnRzQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50c0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGVwYXJ0bWVudHNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuRGVwYXJ0bWVudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlc2lnbmF0aW9uQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkRlc2lnbmF0aW9uQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXNpZ25hdGlvbkNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGVzaWduYXRpb25DbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQ2FtcHVzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkNhbXB1c0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2FtcHVzQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5DYW1wdXNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuV2FyZWhvdXNlQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLldhcmVob3VzZUNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuV2FyZWhvdXNlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5XYXJlaG91c2VDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuTG9jYXRpb25DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuTG9jYXRpb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkxvY2F0aW9uQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5Mb2NhdGlvbkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5CYW5rQWNjb3VudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CYW5rQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmFua0FjY291bnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkJhbmtBY2NvdW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJhbmtTdGF0ZW1lbnRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5DYXNoQWNjb3VudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5DYXNoQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2FzaEFjY291bnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkNhc2hBY2NvdW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkNhdGVnb3JpZXNDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5Qcm9kdWN0c0NsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Qcm9kdWN0c0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUHJvZHVjdHNDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlByb2R1Y3RzQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLldvcmtmbG93U3RhdHVzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLldvcmtmbG93U3RhdHVzQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5Xb3JrZmxvd1N0YXR1c0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuV29ya2Zsb3dTdGF0dXNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuV29ya2Zsb3dDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuV29ya2Zsb3dDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLldvcmtmbG93Q2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5Xb3JrZmxvd0NsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5MZXZlbDRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuTGV2ZWw0Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5MZXZlbDRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkxldmVsNENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5CYW5rUmVjb25DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmFua1JlY29uQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5CYW5rUmVjb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkJhbmtSZWNvbkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5UcmFuc2FjdGlvblJlY29uQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuSW52b2ljZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJpbGxDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5QYXltZW50Q2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQ3JlZGl0Tm90ZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlYml0Tm90ZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5EZWJpdE5vdGVDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkRlYml0Tm90ZUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGViaXROb3RlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkpvdXJuYWxFbnRyeUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Kb3VybmFsRW50cnlDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkpvdXJuYWxFbnRyeUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuSm91cm5hbEVudHJ5Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJ1ZGdldENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CdWRnZXRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkJ1ZGdldENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQnVkZ2V0Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLlJlY2VpcHRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5SZXF1aXNpdGlvbkNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5SZXF1aXNpdGlvbkNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUmVxdWlzaXRpb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlJlcXVpc2l0aW9uQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLlB1cmNoYXNlT3JkZXJDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5HUk5DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuR1JOQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5HUk5DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkdSTkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5Fc3RpbWF0ZWRCdWRnZXRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuRXN0aW1hdGVkQnVkZ2V0Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5Fc3RpbWF0ZWRCdWRnZXRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkVzdGltYXRlZEJ1ZGdldENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5DaGFydE9mQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuR2VuZXJhbExlZGdlckNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuVHJpYWxCYWxhbmNlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5CYWxhbmNlU2hlZXRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlByb2ZpdExvc3NDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkVtcGxveWVlQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkVtcGxveWVlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5FbXBsb3llZUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRW1wbG95ZWVDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQnVkZ2V0UmVwb3J0Q2xhaW1zLlZpZXciXSwiZXhwIjoxNjUyMzAxNjE4LCJpc3MiOiJodHRwOi8vd2FsZWVkLm5ldCIsImF1ZCI6Imh0dHA6Ly93YWxlZWQubmV0In0.cT1IhtQEO0f1AJFVUr4fBuiJ86TPIfjbZrMAxD1cBpI"));
             //headerlist.add(new Header("Authorization","bearer "+token));
             headerlist.add(new Header(name,value));
             Headers headers = new Headers(headerlist);
@@ -1839,7 +1922,7 @@ class ApiTest {
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -1893,7 +1976,7 @@ class ApiTest {
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -1949,7 +2032,7 @@ class ApiTest {
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -1999,18 +2082,21 @@ class ApiTest {
             System.out.println("----------***** NWB_Post_BankAccount *****----------");
 
 
-            String APIBody = "{\"accountNumber\": 43410969230,\n" +
-                    "  \"accountTitle\": \"Rizwan\",\n" +
-                    "  \"bankName\": \"MCB\",\n" +
-                    "  \"campusId\": 2,\n" +
-                    "  \"openingBalance\": 700.507,\n" +
-                    "  \"openingBalanceDate\": \"2008-03-27T10:12:24.815Z\",\n" +
-                    "  \"id\": 0,\n" +
-                    "  \"branch\": \"SMCH\"}";
+//            String APIBody = "{\"accountNumber\": 43410969230,\n" +
+//                    "  \"accountTitle\": \"Rizwan\",\n" +
+//                    "  \"bankName\": \"MCB\",\n" +
+//                    "  \"campusId\": 2,\n" +
+//                    "  \"openingBalance\": 700.507,\n" +
+//                    "  \"openingBalanceDate\": \"2008-03-27T10:12:24.815Z\",\n" +
+//                    "  \"id\": 0,\n" +
+//                    "  \"branch\": \"SMCH\"}";
+
+            //Getting API Post Body from the External File
+            File APIBody = new File(System.getProperty("user.dir") + "/allapis/finance/bankaccount.json");
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -2018,7 +2104,7 @@ class ApiTest {
 //            headerlist.add(new Header("user-host-name","hakim"));
 //            headerlist.add(new Header("user-language","English"));
 //            headerlist.add(new Header("user-host-address","::::0"));
-            //headerlist.add(new Header("AuthToken","bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsIlVzZXJJZCI6IjI2IiwiVXNlclR5cGUiOiJBZG1pbiIsImV4cCI6MTc0OTAzNzk0MCwiaXNzIjoic21lc2suaW4iLCJhdWQiOiJyZWFkZXJzIn0.X7a2_Hf9m5aW8ufa02qJhTlbb-Cg3fX1ljkk5szN6pw "));
+            //headerlist.add(new Header("Authorization","bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiTmF2ZWVkIiwiRW1haWwiOiJzdXBlcmFkbWluQHZpemFseXMuY29tIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiI2OTgxM2MyMy0xNmE3LTRhZmUtYmZlMy0wYjAyMWUzOTJhOGUiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOlsiQWRtaW4iLCJTdXBlckFkbWluIl0sIlBlcm1pc3Npb24iOlsiUGVybWlzc2lvbnMuQXV0aENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJ1c2luZXNzUGFydG5lckNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CdXNpbmVzc1BhcnRuZXJDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkJ1c2luZXNzUGFydG5lckNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQnVzaW5lc3NQYXJ0bmVyQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLk9yZ2FuaXphdGlvbkNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Pcmdhbml6YXRpb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLk9yZ2FuaXphdGlvbkNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuT3JnYW5pemF0aW9uQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlcGFydG1lbnRzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkRlcGFydG1lbnRzQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50c0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGVwYXJ0bWVudHNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuRGVwYXJ0bWVudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlc2lnbmF0aW9uQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkRlc2lnbmF0aW9uQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXNpZ25hdGlvbkNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGVzaWduYXRpb25DbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQ2FtcHVzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkNhbXB1c0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2FtcHVzQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5DYW1wdXNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuV2FyZWhvdXNlQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLldhcmVob3VzZUNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuV2FyZWhvdXNlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5XYXJlaG91c2VDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuTG9jYXRpb25DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuTG9jYXRpb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkxvY2F0aW9uQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5Mb2NhdGlvbkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5CYW5rQWNjb3VudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CYW5rQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmFua0FjY291bnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkJhbmtBY2NvdW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJhbmtTdGF0ZW1lbnRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5DYXNoQWNjb3VudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5DYXNoQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2FzaEFjY291bnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkNhc2hBY2NvdW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkNhdGVnb3JpZXNDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5Qcm9kdWN0c0NsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Qcm9kdWN0c0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUHJvZHVjdHNDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlByb2R1Y3RzQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLldvcmtmbG93U3RhdHVzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLldvcmtmbG93U3RhdHVzQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5Xb3JrZmxvd1N0YXR1c0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuV29ya2Zsb3dTdGF0dXNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuV29ya2Zsb3dDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuV29ya2Zsb3dDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLldvcmtmbG93Q2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5Xb3JrZmxvd0NsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5MZXZlbDRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuTGV2ZWw0Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5MZXZlbDRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkxldmVsNENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5CYW5rUmVjb25DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmFua1JlY29uQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5CYW5rUmVjb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkJhbmtSZWNvbkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5UcmFuc2FjdGlvblJlY29uQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuSW52b2ljZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJpbGxDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5QYXltZW50Q2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQ3JlZGl0Tm90ZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlYml0Tm90ZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5EZWJpdE5vdGVDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkRlYml0Tm90ZUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGViaXROb3RlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkpvdXJuYWxFbnRyeUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Kb3VybmFsRW50cnlDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkpvdXJuYWxFbnRyeUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuSm91cm5hbEVudHJ5Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJ1ZGdldENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CdWRnZXRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkJ1ZGdldENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQnVkZ2V0Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLlJlY2VpcHRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5SZXF1aXNpdGlvbkNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5SZXF1aXNpdGlvbkNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUmVxdWlzaXRpb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlJlcXVpc2l0aW9uQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLlB1cmNoYXNlT3JkZXJDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5HUk5DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuR1JOQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5HUk5DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkdSTkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5Fc3RpbWF0ZWRCdWRnZXRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuRXN0aW1hdGVkQnVkZ2V0Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5Fc3RpbWF0ZWRCdWRnZXRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkVzdGltYXRlZEJ1ZGdldENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5DaGFydE9mQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuR2VuZXJhbExlZGdlckNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuVHJpYWxCYWxhbmNlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5CYWxhbmNlU2hlZXRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlByb2ZpdExvc3NDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkVtcGxveWVlQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkVtcGxveWVlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5FbXBsb3llZUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRW1wbG95ZWVDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQnVkZ2V0UmVwb3J0Q2xhaW1zLlZpZXciXSwiZXhwIjoxNjUyMzAxNjE4LCJpc3MiOiJodHRwOi8vd2FsZWVkLm5ldCIsImF1ZCI6Imh0dHA6Ly93YWxlZWQubmV0In0.cT1IhtQEO0f1AJFVUr4fBuiJ86TPIfjbZrMAxD1cBpI"));
             //headerlist.add(new Header("Authorization","bearer "+token));
             headerlist.add(new Header(name,value));
             Headers headers = new Headers(headerlist);
@@ -2064,7 +2150,7 @@ class ApiTest {
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -2118,7 +2204,7 @@ class ApiTest {
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -2176,7 +2262,7 @@ class ApiTest {
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -2226,24 +2312,27 @@ class ApiTest {
             System.out.println("----------***** NWB_Post_Payment *****----------");
 
 
-            String APIBody = "{\"paymentRegisterType\": 2,\n" +
-                    "    \"paymentType\": 1,\n" +
-                    "    \"businessPartnerId\": 1,\n" +
-                    "    \"accountId\": \"52130000-5566-7788-99aa-bbccddeeff00\",\n" +
-                    "    \"paymentDate\": \"2022-04-15\",\n" +
-                    "    \"paymentRegisterId\": \"fc07447b-733f-4661-c0de-08da1ea52f76\",\n" +
-                    "    \"campusId\": 1,\n" +
-                    "    \"description\": \"abc\",\n" +
-                    "    \"grossPayment\": \"1160.365\",\n" +
-                    "    \"discount\": \"10\",\n" +
-                    "    \"salesTax\": \"5\",\n" +
-                    "    \"incomeTax\": \"5\",\n" +
-                    "    \"srbTax\": \"5\",\n" +
-                    "    \"isSubmit\": true}";
+//            String APIBody = "{\"paymentRegisterType\": 2,\n" +
+//                    "    \"paymentType\": 1,\n" +
+//                    "    \"businessPartnerId\": 1,\n" +
+//                    "    \"accountId\": \"52130000-5566-7788-99aa-bbccddeeff00\",\n" +
+//                    "    \"paymentDate\": \"2022-04-15\",\n" +
+//                    "    \"paymentRegisterId\": \"fc07447b-733f-4661-c0de-08da1ea52f76\",\n" +
+//                    "    \"campusId\": 1,\n" +
+//                    "    \"description\": \"abc\",\n" +
+//                    "    \"grossPayment\": \"1160.365\",\n" +
+//                    "    \"discount\": \"10\",\n" +
+//                    "    \"salesTax\": \"5\",\n" +
+//                    "    \"incomeTax\": \"5\",\n" +
+//                    "    \"srbTax\": \"5\",\n" +
+//                    "    \"isSubmit\": true}";
+
+            //Getting API Post Body from the External File
+            File APIBody = new File(System.getProperty("user.dir") + "/allapis/finance/payment.json");
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -2251,7 +2340,7 @@ class ApiTest {
 //            headerlist.add(new Header("user-host-name","hakim"));
 //            headerlist.add(new Header("user-language","English"));
 //            headerlist.add(new Header("user-host-address","::::0"));
-            //headerlist.add(new Header("AuthToken","bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsIlVzZXJJZCI6IjI2IiwiVXNlclR5cGUiOiJBZG1pbiIsImV4cCI6MTc0OTAzNzk0MCwiaXNzIjoic21lc2suaW4iLCJhdWQiOiJyZWFkZXJzIn0.X7a2_Hf9m5aW8ufa02qJhTlbb-Cg3fX1ljkk5szN6pw "));
+            //headerlist.add(new Header("Authorization","bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiTmF2ZWVkIiwiRW1haWwiOiJzdXBlcmFkbWluQHZpemFseXMuY29tIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiI2OTgxM2MyMy0xNmE3LTRhZmUtYmZlMy0wYjAyMWUzOTJhOGUiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOlsiQWRtaW4iLCJTdXBlckFkbWluIl0sIlBlcm1pc3Npb24iOlsiUGVybWlzc2lvbnMuQXV0aENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJ1c2luZXNzUGFydG5lckNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CdXNpbmVzc1BhcnRuZXJDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkJ1c2luZXNzUGFydG5lckNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQnVzaW5lc3NQYXJ0bmVyQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLk9yZ2FuaXphdGlvbkNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Pcmdhbml6YXRpb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLk9yZ2FuaXphdGlvbkNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuT3JnYW5pemF0aW9uQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlcGFydG1lbnRzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkRlcGFydG1lbnRzQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50c0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGVwYXJ0bWVudHNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuRGVwYXJ0bWVudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlc2lnbmF0aW9uQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkRlc2lnbmF0aW9uQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXNpZ25hdGlvbkNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGVzaWduYXRpb25DbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQ2FtcHVzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkNhbXB1c0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2FtcHVzQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5DYW1wdXNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuV2FyZWhvdXNlQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLldhcmVob3VzZUNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuV2FyZWhvdXNlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5XYXJlaG91c2VDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuTG9jYXRpb25DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuTG9jYXRpb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkxvY2F0aW9uQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5Mb2NhdGlvbkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5CYW5rQWNjb3VudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CYW5rQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmFua0FjY291bnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkJhbmtBY2NvdW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJhbmtTdGF0ZW1lbnRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5DYXNoQWNjb3VudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5DYXNoQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2FzaEFjY291bnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkNhc2hBY2NvdW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkNhdGVnb3JpZXNDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5Qcm9kdWN0c0NsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Qcm9kdWN0c0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUHJvZHVjdHNDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlByb2R1Y3RzQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLldvcmtmbG93U3RhdHVzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLldvcmtmbG93U3RhdHVzQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5Xb3JrZmxvd1N0YXR1c0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuV29ya2Zsb3dTdGF0dXNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuV29ya2Zsb3dDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuV29ya2Zsb3dDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLldvcmtmbG93Q2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5Xb3JrZmxvd0NsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5MZXZlbDRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuTGV2ZWw0Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5MZXZlbDRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkxldmVsNENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5CYW5rUmVjb25DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmFua1JlY29uQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5CYW5rUmVjb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkJhbmtSZWNvbkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5UcmFuc2FjdGlvblJlY29uQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuSW52b2ljZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJpbGxDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5QYXltZW50Q2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQ3JlZGl0Tm90ZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlYml0Tm90ZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5EZWJpdE5vdGVDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkRlYml0Tm90ZUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGViaXROb3RlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkpvdXJuYWxFbnRyeUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Kb3VybmFsRW50cnlDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkpvdXJuYWxFbnRyeUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuSm91cm5hbEVudHJ5Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJ1ZGdldENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CdWRnZXRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkJ1ZGdldENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQnVkZ2V0Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLlJlY2VpcHRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5SZXF1aXNpdGlvbkNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5SZXF1aXNpdGlvbkNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUmVxdWlzaXRpb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlJlcXVpc2l0aW9uQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLlB1cmNoYXNlT3JkZXJDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5HUk5DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuR1JOQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5HUk5DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkdSTkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5Fc3RpbWF0ZWRCdWRnZXRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuRXN0aW1hdGVkQnVkZ2V0Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5Fc3RpbWF0ZWRCdWRnZXRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkVzdGltYXRlZEJ1ZGdldENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5DaGFydE9mQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuR2VuZXJhbExlZGdlckNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuVHJpYWxCYWxhbmNlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5CYWxhbmNlU2hlZXRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlByb2ZpdExvc3NDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkVtcGxveWVlQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkVtcGxveWVlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5FbXBsb3llZUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRW1wbG95ZWVDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQnVkZ2V0UmVwb3J0Q2xhaW1zLlZpZXciXSwiZXhwIjoxNjUyMzAxNjE4LCJpc3MiOiJodHRwOi8vd2FsZWVkLm5ldCIsImF1ZCI6Imh0dHA6Ly93YWxlZWQubmV0In0.cT1IhtQEO0f1AJFVUr4fBuiJ86TPIfjbZrMAxD1cBpI"));
             //headerlist.add(new Header("Authorization","bearer "+token));
             headerlist.add(new Header(name,value));
             Headers headers = new Headers(headerlist);
@@ -2297,7 +2386,7 @@ class ApiTest {
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -2351,7 +2440,7 @@ class ApiTest {
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -2401,30 +2490,33 @@ class ApiTest {
             System.out.println("----------***** NWB_Post_Journal *****----------");
 
 
-            String APIBody = "{\"date\": \"2022-04-15\",\n" +
-                    "    \"description\": \"abc\",\n" +
-                    "    \"campusId\": 2,\n" +
-                    "    \"journalEntryLines\": [\n" +
-                    "        {\n" +
-                    "            \"accountId\": \"41110000-5566-7788-99aa-bbccddeeff00\",\n" +
-                    "            \"businessPartnerId\": 2,\n" +
-                    "            \"description\": \"ggg\",\n" +
-                    "            \"debit\": \"550.569\",\n" +
-                    "            \"warehouseId\": 1\n" +
-                    "        },\n" +
-                    "        {\n" +
-                    "            \"accountId\": \"41110000-5566-7788-99aa-bbccddeeff00\",\n" +
-                    "            \"businessPartnerId\": 2,\n" +
-                    "            \"description\": \"ggg\",\n" +
-                    "            \"credit\": \"550.569\",\n" +
-                    "            \"warehouseId\": 1\n" +
-                    "        }\n" +
-                    "    ],\n" +
-                    "    \"isSubmit\": true}";
+//            String APIBody = "{\"date\": \"2022-04-15\",\n" +
+//                    "    \"description\": \"abc\",\n" +
+//                    "    \"campusId\": 2,\n" +
+//                    "    \"journalEntryLines\": [\n" +
+//                    "        {\n" +
+//                    "            \"accountId\": \"41110000-5566-7788-99aa-bbccddeeff00\",\n" +
+//                    "            \"businessPartnerId\": 2,\n" +
+//                    "            \"description\": \"ggg\",\n" +
+//                    "            \"debit\": \"550.569\",\n" +
+//                    "            \"warehouseId\": 1\n" +
+//                    "        },\n" +
+//                    "        {\n" +
+//                    "            \"accountId\": \"41110000-5566-7788-99aa-bbccddeeff00\",\n" +
+//                    "            \"businessPartnerId\": 2,\n" +
+//                    "            \"description\": \"ggg\",\n" +
+//                    "            \"credit\": \"550.569\",\n" +
+//                    "            \"warehouseId\": 1\n" +
+//                    "        }\n" +
+//                    "    ],\n" +
+//                    "    \"isSubmit\": true}";
 
+
+            //Getting API Post Body from the External File
+            File APIBody = new File(System.getProperty("user.dir") + "/allapis/finance/journalentry.json");
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -2432,7 +2524,7 @@ class ApiTest {
 //            headerlist.add(new Header("user-host-name","hakim"));
 //            headerlist.add(new Header("user-language","English"));
 //            headerlist.add(new Header("user-host-address","::::0"));
-            //headerlist.add(new Header("AuthToken","bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsIlVzZXJJZCI6IjI2IiwiVXNlclR5cGUiOiJBZG1pbiIsImV4cCI6MTc0OTAzNzk0MCwiaXNzIjoic21lc2suaW4iLCJhdWQiOiJyZWFkZXJzIn0.X7a2_Hf9m5aW8ufa02qJhTlbb-Cg3fX1ljkk5szN6pw "));
+            //headerlist.add(new Header("Authorization","bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiTmF2ZWVkIiwiRW1haWwiOiJzdXBlcmFkbWluQHZpemFseXMuY29tIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiI2OTgxM2MyMy0xNmE3LTRhZmUtYmZlMy0wYjAyMWUzOTJhOGUiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOlsiQWRtaW4iLCJTdXBlckFkbWluIl0sIlBlcm1pc3Npb24iOlsiUGVybWlzc2lvbnMuQXV0aENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJ1c2luZXNzUGFydG5lckNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CdXNpbmVzc1BhcnRuZXJDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkJ1c2luZXNzUGFydG5lckNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQnVzaW5lc3NQYXJ0bmVyQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLk9yZ2FuaXphdGlvbkNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Pcmdhbml6YXRpb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLk9yZ2FuaXphdGlvbkNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuT3JnYW5pemF0aW9uQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlcGFydG1lbnRzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkRlcGFydG1lbnRzQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50c0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGVwYXJ0bWVudHNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuRGVwYXJ0bWVudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlc2lnbmF0aW9uQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkRlc2lnbmF0aW9uQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXNpZ25hdGlvbkNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGVzaWduYXRpb25DbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQ2FtcHVzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkNhbXB1c0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2FtcHVzQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5DYW1wdXNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuV2FyZWhvdXNlQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLldhcmVob3VzZUNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuV2FyZWhvdXNlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5XYXJlaG91c2VDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuTG9jYXRpb25DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuTG9jYXRpb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkxvY2F0aW9uQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5Mb2NhdGlvbkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5CYW5rQWNjb3VudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CYW5rQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmFua0FjY291bnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkJhbmtBY2NvdW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJhbmtTdGF0ZW1lbnRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5DYXNoQWNjb3VudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5DYXNoQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2FzaEFjY291bnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkNhc2hBY2NvdW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkNhdGVnb3JpZXNDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5Qcm9kdWN0c0NsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Qcm9kdWN0c0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUHJvZHVjdHNDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlByb2R1Y3RzQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLldvcmtmbG93U3RhdHVzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLldvcmtmbG93U3RhdHVzQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5Xb3JrZmxvd1N0YXR1c0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuV29ya2Zsb3dTdGF0dXNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuV29ya2Zsb3dDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuV29ya2Zsb3dDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLldvcmtmbG93Q2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5Xb3JrZmxvd0NsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5MZXZlbDRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuTGV2ZWw0Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5MZXZlbDRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkxldmVsNENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5CYW5rUmVjb25DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmFua1JlY29uQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5CYW5rUmVjb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkJhbmtSZWNvbkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5UcmFuc2FjdGlvblJlY29uQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuSW52b2ljZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJpbGxDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5QYXltZW50Q2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQ3JlZGl0Tm90ZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlYml0Tm90ZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5EZWJpdE5vdGVDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkRlYml0Tm90ZUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGViaXROb3RlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkpvdXJuYWxFbnRyeUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Kb3VybmFsRW50cnlDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkpvdXJuYWxFbnRyeUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuSm91cm5hbEVudHJ5Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJ1ZGdldENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CdWRnZXRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkJ1ZGdldENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQnVkZ2V0Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLlJlY2VpcHRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5SZXF1aXNpdGlvbkNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5SZXF1aXNpdGlvbkNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUmVxdWlzaXRpb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlJlcXVpc2l0aW9uQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLlB1cmNoYXNlT3JkZXJDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5HUk5DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuR1JOQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5HUk5DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkdSTkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5Fc3RpbWF0ZWRCdWRnZXRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuRXN0aW1hdGVkQnVkZ2V0Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5Fc3RpbWF0ZWRCdWRnZXRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkVzdGltYXRlZEJ1ZGdldENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5DaGFydE9mQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuR2VuZXJhbExlZGdlckNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuVHJpYWxCYWxhbmNlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5CYWxhbmNlU2hlZXRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlByb2ZpdExvc3NDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkVtcGxveWVlQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkVtcGxveWVlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5FbXBsb3llZUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRW1wbG95ZWVDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQnVkZ2V0UmVwb3J0Q2xhaW1zLlZpZXciXSwiZXhwIjoxNjUyNDc2MTUwLCJpc3MiOiJodHRwOi8vd2FsZWVkLm5ldCIsImF1ZCI6Imh0dHA6Ly93YWxlZWQubmV0In0.JAAx3pr7IH4n4URqvR9O2dVUavuS-ounZf_oSilHkoo"));
             //headerlist.add(new Header("Authorization","bearer "+token));
             headerlist.add(new Header(name,value));
             Headers headers = new Headers(headerlist);
@@ -2478,7 +2570,7 @@ class ApiTest {
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -2532,7 +2624,7 @@ class ApiTest {
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -2541,7 +2633,8 @@ class ApiTest {
 //            headerlist.add(new Header("user-language","English"));
 //            headerlist.add(new Header("user-host-address","::::0"));
             //headerlist.add(new Header("AuthToken","bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsIlVzZXJJZCI6IjI2IiwiVXNlclR5cGUiOiJBZG1pbiIsImV4cCI6MTc0OTAzNzk0MCwiaXNzIjoic21lc2suaW4iLCJhdWQiOiJyZWFkZXJzIn0.X7a2_Hf9m5aW8ufa02qJhTlbb-Cg3fX1ljkk5szN6pw "));
-            headerlist.add(new Header("Authorization","bearer "+token));
+            //headerlist.add(new Header("Authorization","bearer "+token));
+            headerlist.add(new Header(name,value));
             Headers headers = new Headers(headerlist);
 
 
@@ -2581,27 +2674,29 @@ class ApiTest {
             System.out.println("----------***** NWB_Post_Invoice *****----------");
 
 
-            String APIBody = "{ \"customerId\": 2,\n" +
-                    "    \"invoiceDate\": \"2022-04-15\",\n" +
-                    "    \"campusId\": 2,\n" +
-                    "    \"contact\": \"\",\n" +
-                    "    \"dueDate\": \"2022-04-16\",\n" +
-                    "    \"invoiceLines\": [\n" +
-                    "        {\n" +
-                    "            \"itemId\": 1,\n" +
-                    "            \"description\": \"ttt\",\n" +
-                    "            \"price\": 11000.35,\n" +
-                    "            \"quantity\": \"2\",\n" +
-                    "            \"tax\": 5,\n" +
-                    "            \"accountId\": \"22140000-5566-7788-99aa-bbccddeeff00\",\n" +
-                    "            \"warehouseId\": 1\n" +
-                    "        }\n" +
-                    "    ],\n" +
-                    "    \"isSubmit\": true}";
+//            String APIBody = "{ \"customerId\": 2,\n" +
+//                    "    \"invoiceDate\": \"2022-04-15\",\n" +
+//                    "    \"campusId\": 2,\n" +
+//                    "    \"contact\": \"\",\n" +
+//                    "    \"dueDate\": \"2022-04-16\",\n" +
+//                    "    \"invoiceLines\": [\n" +
+//                    "        {\n" +
+//                    "            \"itemId\": 1,\n" +
+//                    "            \"description\": \"ttt\",\n" +
+//                    "            \"price\": 11000.35,\n" +
+//                    "            \"quantity\": \"2\",\n" +
+//                    "            \"tax\": 5,\n" +
+//                    "            \"accountId\": \"22140000-5566-7788-99aa-bbccddeeff00\",\n" +
+//                    "            \"warehouseId\": 1\n" +
+//                    "        }\n" +
+//                    "    ],\n" +
+//                    "    \"isSubmit\": true}";
 
+            //Getting API Post Body from the External File
+            File APIBody = new File(System.getProperty("user.dir") + "/allapis/finance/invoice.json");
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -2609,7 +2704,7 @@ class ApiTest {
 //            headerlist.add(new Header("user-host-name","hakim"));
 //            headerlist.add(new Header("user-language","English"));
 //            headerlist.add(new Header("user-host-address","::::0"));
-            //headerlist.add(new Header("AuthToken","bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsIlVzZXJJZCI6IjI2IiwiVXNlclR5cGUiOiJBZG1pbiIsImV4cCI6MTc0OTAzNzk0MCwiaXNzIjoic21lc2suaW4iLCJhdWQiOiJyZWFkZXJzIn0.X7a2_Hf9m5aW8ufa02qJhTlbb-Cg3fX1ljkk5szN6pw "));
+            //headerlist.add(new Header("Authorization","bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiTmF2ZWVkIiwiRW1haWwiOiJzdXBlcmFkbWluQHZpemFseXMuY29tIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiI2OTgxM2MyMy0xNmE3LTRhZmUtYmZlMy0wYjAyMWUzOTJhOGUiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOlsiQWRtaW4iLCJTdXBlckFkbWluIl0sIlBlcm1pc3Npb24iOlsiUGVybWlzc2lvbnMuQXV0aENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJ1c2luZXNzUGFydG5lckNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CdXNpbmVzc1BhcnRuZXJDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkJ1c2luZXNzUGFydG5lckNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQnVzaW5lc3NQYXJ0bmVyQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLk9yZ2FuaXphdGlvbkNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Pcmdhbml6YXRpb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLk9yZ2FuaXphdGlvbkNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuT3JnYW5pemF0aW9uQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlcGFydG1lbnRzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkRlcGFydG1lbnRzQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50c0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGVwYXJ0bWVudHNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuRGVwYXJ0bWVudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlc2lnbmF0aW9uQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkRlc2lnbmF0aW9uQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXNpZ25hdGlvbkNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGVzaWduYXRpb25DbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQ2FtcHVzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkNhbXB1c0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2FtcHVzQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5DYW1wdXNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuV2FyZWhvdXNlQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLldhcmVob3VzZUNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuV2FyZWhvdXNlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5XYXJlaG91c2VDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuTG9jYXRpb25DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuTG9jYXRpb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkxvY2F0aW9uQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5Mb2NhdGlvbkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5CYW5rQWNjb3VudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CYW5rQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmFua0FjY291bnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkJhbmtBY2NvdW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJhbmtTdGF0ZW1lbnRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5DYXNoQWNjb3VudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5DYXNoQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2FzaEFjY291bnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkNhc2hBY2NvdW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkNhdGVnb3JpZXNDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5Qcm9kdWN0c0NsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Qcm9kdWN0c0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUHJvZHVjdHNDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlByb2R1Y3RzQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLldvcmtmbG93U3RhdHVzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLldvcmtmbG93U3RhdHVzQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5Xb3JrZmxvd1N0YXR1c0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuV29ya2Zsb3dTdGF0dXNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuV29ya2Zsb3dDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuV29ya2Zsb3dDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLldvcmtmbG93Q2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5Xb3JrZmxvd0NsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5MZXZlbDRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuTGV2ZWw0Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5MZXZlbDRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkxldmVsNENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5CYW5rUmVjb25DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmFua1JlY29uQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5CYW5rUmVjb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkJhbmtSZWNvbkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5UcmFuc2FjdGlvblJlY29uQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuSW52b2ljZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJpbGxDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5QYXltZW50Q2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQ3JlZGl0Tm90ZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlYml0Tm90ZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5EZWJpdE5vdGVDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkRlYml0Tm90ZUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGViaXROb3RlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkpvdXJuYWxFbnRyeUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Kb3VybmFsRW50cnlDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkpvdXJuYWxFbnRyeUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuSm91cm5hbEVudHJ5Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJ1ZGdldENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CdWRnZXRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkJ1ZGdldENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQnVkZ2V0Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLlJlY2VpcHRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5SZXF1aXNpdGlvbkNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5SZXF1aXNpdGlvbkNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUmVxdWlzaXRpb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlJlcXVpc2l0aW9uQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLlB1cmNoYXNlT3JkZXJDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5HUk5DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuR1JOQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5HUk5DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkdSTkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5Fc3RpbWF0ZWRCdWRnZXRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuRXN0aW1hdGVkQnVkZ2V0Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5Fc3RpbWF0ZWRCdWRnZXRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkVzdGltYXRlZEJ1ZGdldENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5DaGFydE9mQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuR2VuZXJhbExlZGdlckNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuVHJpYWxCYWxhbmNlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5CYWxhbmNlU2hlZXRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlByb2ZpdExvc3NDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkVtcGxveWVlQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkVtcGxveWVlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5FbXBsb3llZUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRW1wbG95ZWVDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQnVkZ2V0UmVwb3J0Q2xhaW1zLlZpZXciXSwiZXhwIjoxNjUyNDc2MTUwLCJpc3MiOiJodHRwOi8vd2FsZWVkLm5ldCIsImF1ZCI6Imh0dHA6Ly93YWxlZWQubmV0In0.JAAx3pr7IH4n4URqvR9O2dVUavuS-ounZf_oSilHkoo"));
             //headerlist.add(new Header("Authorization","bearer "+token));
             headerlist.add(new Header(name,value));
             Headers headers = new Headers(headerlist);
@@ -2655,7 +2750,7 @@ class ApiTest {
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -2709,7 +2804,7 @@ class ApiTest {
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -2759,25 +2854,28 @@ class ApiTest {
             System.out.println("----------***** NWB_Post_CreditNote *****----------");
 
 
-            String APIBody = "{ \"customerId\": 2,\n" +
-                    "    \"noteDate\": \"2022-04-15\",\n" +
-                    "    \"campusId\": 2,\n" +
-                    "    \"creditNoteLines\": [\n" +
-                    "        {\n" +
-                    "            \"itemId\": 1,\n" +
-                    "            \"description\": \"www\",\n" +
-                    "            \"price\": \"1400.436\",\n" +
-                    "            \"quantity\": \"2\",\n" +
-                    "            \"tax\": 5,\n" +
-                    "            \"accountId\": \"11120000-5566-7788-99aa-bbccddeeff00\",\n" +
-                    "            \"warehouseId\": 1\n" +
-                    "        }\n" +
-                    "    ],\n" +
-                    "    \"isSubmit\": true}";
+//            String APIBody = "{ \"customerId\": 2,\n" +
+//                    "    \"noteDate\": \"2022-04-15\",\n" +
+//                    "    \"campusId\": 2,\n" +
+//                    "    \"creditNoteLines\": [\n" +
+//                    "        {\n" +
+//                    "            \"itemId\": 1,\n" +
+//                    "            \"description\": \"www\",\n" +
+//                    "            \"price\": \"1400.436\",\n" +
+//                    "            \"quantity\": \"2\",\n" +
+//                    "            \"tax\": 5,\n" +
+//                    "            \"accountId\": \"11120000-5566-7788-99aa-bbccddeeff00\",\n" +
+//                    "            \"warehouseId\": 1\n" +
+//                    "        }\n" +
+//                    "    ],\n" +
+//                    "    \"isSubmit\": true}";
+
+            //Getting API Post Body from the External File
+            File APIBody = new File(System.getProperty("user.dir") + "/allapis/finance/creditnote.json");
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -2785,7 +2883,7 @@ class ApiTest {
 //            headerlist.add(new Header("user-host-name","hakim"));
 //            headerlist.add(new Header("user-language","English"));
 //            headerlist.add(new Header("user-host-address","::::0"));
-            //headerlist.add(new Header("AuthToken","bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsIlVzZXJJZCI6IjI2IiwiVXNlclR5cGUiOiJBZG1pbiIsImV4cCI6MTc0OTAzNzk0MCwiaXNzIjoic21lc2suaW4iLCJhdWQiOiJyZWFkZXJzIn0.X7a2_Hf9m5aW8ufa02qJhTlbb-Cg3fX1ljkk5szN6pw "));
+            //headerlist.add(new Header("Authorization","bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiTmF2ZWVkIiwiRW1haWwiOiJzdXBlcmFkbWluQHZpemFseXMuY29tIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiI2OTgxM2MyMy0xNmE3LTRhZmUtYmZlMy0wYjAyMWUzOTJhOGUiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOlsiQWRtaW4iLCJTdXBlckFkbWluIl0sIlBlcm1pc3Npb24iOlsiUGVybWlzc2lvbnMuQXV0aENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJ1c2luZXNzUGFydG5lckNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CdXNpbmVzc1BhcnRuZXJDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkJ1c2luZXNzUGFydG5lckNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQnVzaW5lc3NQYXJ0bmVyQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLk9yZ2FuaXphdGlvbkNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Pcmdhbml6YXRpb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLk9yZ2FuaXphdGlvbkNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuT3JnYW5pemF0aW9uQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlcGFydG1lbnRzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkRlcGFydG1lbnRzQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50c0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGVwYXJ0bWVudHNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuRGVwYXJ0bWVudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlc2lnbmF0aW9uQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkRlc2lnbmF0aW9uQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXNpZ25hdGlvbkNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGVzaWduYXRpb25DbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQ2FtcHVzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkNhbXB1c0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2FtcHVzQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5DYW1wdXNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuV2FyZWhvdXNlQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLldhcmVob3VzZUNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuV2FyZWhvdXNlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5XYXJlaG91c2VDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuTG9jYXRpb25DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuTG9jYXRpb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkxvY2F0aW9uQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5Mb2NhdGlvbkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5CYW5rQWNjb3VudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CYW5rQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmFua0FjY291bnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkJhbmtBY2NvdW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJhbmtTdGF0ZW1lbnRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5DYXNoQWNjb3VudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5DYXNoQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2FzaEFjY291bnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkNhc2hBY2NvdW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkNhdGVnb3JpZXNDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5Qcm9kdWN0c0NsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Qcm9kdWN0c0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUHJvZHVjdHNDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlByb2R1Y3RzQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLldvcmtmbG93U3RhdHVzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLldvcmtmbG93U3RhdHVzQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5Xb3JrZmxvd1N0YXR1c0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuV29ya2Zsb3dTdGF0dXNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuV29ya2Zsb3dDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuV29ya2Zsb3dDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLldvcmtmbG93Q2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5Xb3JrZmxvd0NsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5MZXZlbDRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuTGV2ZWw0Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5MZXZlbDRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkxldmVsNENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5CYW5rUmVjb25DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmFua1JlY29uQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5CYW5rUmVjb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkJhbmtSZWNvbkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5UcmFuc2FjdGlvblJlY29uQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuSW52b2ljZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJpbGxDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5QYXltZW50Q2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQ3JlZGl0Tm90ZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlYml0Tm90ZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5EZWJpdE5vdGVDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkRlYml0Tm90ZUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGViaXROb3RlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkpvdXJuYWxFbnRyeUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Kb3VybmFsRW50cnlDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkpvdXJuYWxFbnRyeUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuSm91cm5hbEVudHJ5Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJ1ZGdldENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CdWRnZXRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkJ1ZGdldENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQnVkZ2V0Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLlJlY2VpcHRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5SZXF1aXNpdGlvbkNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5SZXF1aXNpdGlvbkNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUmVxdWlzaXRpb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlJlcXVpc2l0aW9uQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLlB1cmNoYXNlT3JkZXJDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5HUk5DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuR1JOQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5HUk5DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkdSTkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5Fc3RpbWF0ZWRCdWRnZXRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuRXN0aW1hdGVkQnVkZ2V0Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5Fc3RpbWF0ZWRCdWRnZXRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkVzdGltYXRlZEJ1ZGdldENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5DaGFydE9mQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuR2VuZXJhbExlZGdlckNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuVHJpYWxCYWxhbmNlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5CYWxhbmNlU2hlZXRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlByb2ZpdExvc3NDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkVtcGxveWVlQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkVtcGxveWVlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5FbXBsb3llZUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRW1wbG95ZWVDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQnVkZ2V0UmVwb3J0Q2xhaW1zLlZpZXciXSwiZXhwIjoxNjUyNDc2MTUwLCJpc3MiOiJodHRwOi8vd2FsZWVkLm5ldCIsImF1ZCI6Imh0dHA6Ly93YWxlZWQubmV0In0.JAAx3pr7IH4n4URqvR9O2dVUavuS-ounZf_oSilHkoo"));
             //headerlist.add(new Header("Authorization","bearer "+token));
             headerlist.add(new Header(name,value));
             Headers headers = new Headers(headerlist);
@@ -2831,7 +2929,7 @@ class ApiTest {
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -2885,7 +2983,7 @@ class ApiTest {
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -2935,37 +3033,40 @@ class ApiTest {
             System.out.println("----------***** NWB_Post_VendorBill *****----------");
 
 
-            String APIBody = "{ \"vendorId\": 2,\n" +
-                    "    \"billDate\": \"2022-04-17T19:00:00.000Z\",\n" +
-                    "    \"dueDate\": \"2022-04-18T19:00:00.000Z\",\n" +
-                    "    \"campusId\": 3,\n" +
-                    "    \"billLines\": [\n" +
-                    "        {\n" +
-                    "            \"itemId\": 2,\n" +
-                    "            \"description\": \"sss\",\n" +
-                    "            \"cost\": 1200.45,\n" +
-                    "            \"quantity\": \"2\",\n" +
-                    "            \"tax\": 5,\n" +
-                    "            \"anyOtherTax\": \"2\",\n" +
-                    "            \"accountId\": \"11130000-5566-7788-99aa-bbccddeeff00\",\n" +
-                    "            \"warehouseId\": 1\n" +
-                    "        },\n" +
-                    "        {\n" +
-                    "            \"itemId\": 1,\n" +
-                    "            \"description\": \"sss\",\n" +
-                    "            \"cost\": 1300.45,\n" +
-                    "            \"quantity\": \"2\",\n" +
-                    "            \"tax\": 5,\n" +
-                    "            \"anyOtherTax\": \"2\",\n" +
-                    "            \"accountId\": \"52130000-5566-7788-99aa-bbccddeeff00\",\n" +
-                    "            \"warehouseId\": 2\n" +
-                    "        }\n" +
-                    "    ],\n" +
-                    "    \"isSubmit\": true}";
+//            String APIBody = "{ \"vendorId\": 2,\n" +
+//                    "    \"billDate\": \"2022-04-17T19:00:00.000Z\",\n" +
+//                    "    \"dueDate\": \"2022-04-18T19:00:00.000Z\",\n" +
+//                    "    \"campusId\": 3,\n" +
+//                    "    \"billLines\": [\n" +
+//                    "        {\n" +
+//                    "            \"itemId\": 2,\n" +
+//                    "            \"description\": \"sss\",\n" +
+//                    "            \"cost\": 1200.45,\n" +
+//                    "            \"quantity\": \"2\",\n" +
+//                    "            \"tax\": 5,\n" +
+//                    "            \"anyOtherTax\": \"2\",\n" +
+//                    "            \"accountId\": \"11130000-5566-7788-99aa-bbccddeeff00\",\n" +
+//                    "            \"warehouseId\": 1\n" +
+//                    "        },\n" +
+//                    "        {\n" +
+//                    "            \"itemId\": 1,\n" +
+//                    "            \"description\": \"sss\",\n" +
+//                    "            \"cost\": 1300.45,\n" +
+//                    "            \"quantity\": \"2\",\n" +
+//                    "            \"tax\": 5,\n" +
+//                    "            \"anyOtherTax\": \"2\",\n" +
+//                    "            \"accountId\": \"52130000-5566-7788-99aa-bbccddeeff00\",\n" +
+//                    "            \"warehouseId\": 2\n" +
+//                    "        }\n" +
+//                    "    ],\n" +
+//                    "    \"isSubmit\": true}";
+
+            //Getting API Post Body from the External File
+            File APIBody = new File(System.getProperty("user.dir") + "/allapis/finance/vendorbill.json");
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -2973,7 +3074,7 @@ class ApiTest {
 //            headerlist.add(new Header("user-host-name","hakim"));
 //            headerlist.add(new Header("user-language","English"));
 //            headerlist.add(new Header("user-host-address","::::0"));
-            //headerlist.add(new Header("AuthToken","bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsIlVzZXJJZCI6IjI2IiwiVXNlclR5cGUiOiJBZG1pbiIsImV4cCI6MTc0OTAzNzk0MCwiaXNzIjoic21lc2suaW4iLCJhdWQiOiJyZWFkZXJzIn0.X7a2_Hf9m5aW8ufa02qJhTlbb-Cg3fX1ljkk5szN6pw "));
+            //headerlist.add(new Header("Authorization","bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiTmF2ZWVkIiwiRW1haWwiOiJzdXBlcmFkbWluQHZpemFseXMuY29tIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiI2OTgxM2MyMy0xNmE3LTRhZmUtYmZlMy0wYjAyMWUzOTJhOGUiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOlsiQWRtaW4iLCJTdXBlckFkbWluIl0sIlBlcm1pc3Npb24iOlsiUGVybWlzc2lvbnMuQXV0aENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJ1c2luZXNzUGFydG5lckNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CdXNpbmVzc1BhcnRuZXJDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkJ1c2luZXNzUGFydG5lckNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQnVzaW5lc3NQYXJ0bmVyQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLk9yZ2FuaXphdGlvbkNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Pcmdhbml6YXRpb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLk9yZ2FuaXphdGlvbkNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuT3JnYW5pemF0aW9uQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlcGFydG1lbnRzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkRlcGFydG1lbnRzQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50c0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGVwYXJ0bWVudHNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuRGVwYXJ0bWVudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlc2lnbmF0aW9uQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkRlc2lnbmF0aW9uQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXNpZ25hdGlvbkNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGVzaWduYXRpb25DbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQ2FtcHVzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkNhbXB1c0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2FtcHVzQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5DYW1wdXNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuV2FyZWhvdXNlQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLldhcmVob3VzZUNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuV2FyZWhvdXNlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5XYXJlaG91c2VDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuTG9jYXRpb25DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuTG9jYXRpb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkxvY2F0aW9uQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5Mb2NhdGlvbkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5CYW5rQWNjb3VudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CYW5rQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmFua0FjY291bnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkJhbmtBY2NvdW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJhbmtTdGF0ZW1lbnRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5DYXNoQWNjb3VudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5DYXNoQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2FzaEFjY291bnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkNhc2hBY2NvdW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkNhdGVnb3JpZXNDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5Qcm9kdWN0c0NsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Qcm9kdWN0c0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUHJvZHVjdHNDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlByb2R1Y3RzQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLldvcmtmbG93U3RhdHVzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLldvcmtmbG93U3RhdHVzQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5Xb3JrZmxvd1N0YXR1c0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuV29ya2Zsb3dTdGF0dXNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuV29ya2Zsb3dDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuV29ya2Zsb3dDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLldvcmtmbG93Q2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5Xb3JrZmxvd0NsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5MZXZlbDRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuTGV2ZWw0Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5MZXZlbDRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkxldmVsNENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5CYW5rUmVjb25DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmFua1JlY29uQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5CYW5rUmVjb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkJhbmtSZWNvbkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5UcmFuc2FjdGlvblJlY29uQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuSW52b2ljZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJpbGxDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5QYXltZW50Q2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQ3JlZGl0Tm90ZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlYml0Tm90ZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5EZWJpdE5vdGVDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkRlYml0Tm90ZUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGViaXROb3RlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkpvdXJuYWxFbnRyeUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Kb3VybmFsRW50cnlDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkpvdXJuYWxFbnRyeUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuSm91cm5hbEVudHJ5Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJ1ZGdldENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CdWRnZXRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkJ1ZGdldENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQnVkZ2V0Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLlJlY2VpcHRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5SZXF1aXNpdGlvbkNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5SZXF1aXNpdGlvbkNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUmVxdWlzaXRpb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlJlcXVpc2l0aW9uQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLlB1cmNoYXNlT3JkZXJDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5HUk5DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuR1JOQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5HUk5DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkdSTkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5Fc3RpbWF0ZWRCdWRnZXRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuRXN0aW1hdGVkQnVkZ2V0Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5Fc3RpbWF0ZWRCdWRnZXRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkVzdGltYXRlZEJ1ZGdldENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5DaGFydE9mQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuR2VuZXJhbExlZGdlckNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuVHJpYWxCYWxhbmNlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5CYWxhbmNlU2hlZXRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlByb2ZpdExvc3NDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkVtcGxveWVlQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkVtcGxveWVlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5FbXBsb3llZUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRW1wbG95ZWVDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQnVkZ2V0UmVwb3J0Q2xhaW1zLlZpZXciXSwiZXhwIjoxNjUyNDc2MTUwLCJpc3MiOiJodHRwOi8vd2FsZWVkLm5ldCIsImF1ZCI6Imh0dHA6Ly93YWxlZWQubmV0In0.JAAx3pr7IH4n4URqvR9O2dVUavuS-ounZf_oSilHkoo"));
             //headerlist.add(new Header("Authorization","bearer "+token));
             headerlist.add(new Header(name,value));
             Headers headers = new Headers(headerlist);
@@ -3019,7 +3120,7 @@ class ApiTest {
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -3073,7 +3174,7 @@ class ApiTest {
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -3123,34 +3224,37 @@ class ApiTest {
             System.out.println("----------***** NWB_Post_DebitNote *****----------");
 
 
-            String APIBody = "{\"vendorId\": 1,\n" +
-                    "    \"noteDate\": \"2022-04-18\",\n" +
-                    "    \"campusId\": 2,\n" +
-                    "    \"debitNoteLines\": [\n" +
-                    "        {\n" +
-                    "            \"itemId\": 1,\n" +
-                    "            \"description\": \"ddd\",\n" +
-                    "            \"cost\": \"650.346\",\n" +
-                    "            \"quantity\": \"2\",\n" +
-                    "            \"tax\": \"2\",\n" +
-                    "            \"accountId\": \"52110000-5566-7788-99aa-bbccddeeff00\",\n" +
-                    "            \"warehouseId\": 1\n" +
-                    "        },\n" +
-                    "        {\n" +
-                    "            \"itemId\": 1,\n" +
-                    "            \"description\": \"ddd\",\n" +
-                    "            \"cost\": \"850.347\",\n" +
-                    "            \"quantity\": \"2\",\n" +
-                    "            \"tax\": \"2\",\n" +
-                    "            \"accountId\": \"52160000-5566-7788-99aa-bbccddeeff00\",\n" +
-                    "            \"warehouseId\": 1\n" +
-                    "        }\n" +
-                    "    ],\n" +
-                    "    \"isSubmit\": true}";
+//            String APIBody = "{\"vendorId\": 1,\n" +
+//                    "    \"noteDate\": \"2022-04-18\",\n" +
+//                    "    \"campusId\": 2,\n" +
+//                    "    \"debitNoteLines\": [\n" +
+//                    "        {\n" +
+//                    "            \"itemId\": 1,\n" +
+//                    "            \"description\": \"ddd\",\n" +
+//                    "            \"cost\": \"650.346\",\n" +
+//                    "            \"quantity\": \"2\",\n" +
+//                    "            \"tax\": \"2\",\n" +
+//                    "            \"accountId\": \"52110000-5566-7788-99aa-bbccddeeff00\",\n" +
+//                    "            \"warehouseId\": 1\n" +
+//                    "        },\n" +
+//                    "        {\n" +
+//                    "            \"itemId\": 1,\n" +
+//                    "            \"description\": \"ddd\",\n" +
+//                    "            \"cost\": \"850.347\",\n" +
+//                    "            \"quantity\": \"2\",\n" +
+//                    "            \"tax\": \"2\",\n" +
+//                    "            \"accountId\": \"52160000-5566-7788-99aa-bbccddeeff00\",\n" +
+//                    "            \"warehouseId\": 1\n" +
+//                    "        }\n" +
+//                    "    ],\n" +
+//                    "    \"isSubmit\": true}";
+
+            //Getting API Post Body from the External File
+            File APIBody = new File(System.getProperty("user.dir") + "/allapis/finance/debitnote.json");
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -3158,7 +3262,7 @@ class ApiTest {
 //            headerlist.add(new Header("user-host-name","hakim"));
 //            headerlist.add(new Header("user-language","English"));
 //            headerlist.add(new Header("user-host-address","::::0"));
-            //headerlist.add(new Header("AuthToken","bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsIlVzZXJJZCI6IjI2IiwiVXNlclR5cGUiOiJBZG1pbiIsImV4cCI6MTc0OTAzNzk0MCwiaXNzIjoic21lc2suaW4iLCJhdWQiOiJyZWFkZXJzIn0.X7a2_Hf9m5aW8ufa02qJhTlbb-Cg3fX1ljkk5szN6pw "));
+            //headerlist.add(new Header("Authorization","bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiTmF2ZWVkIiwiRW1haWwiOiJzdXBlcmFkbWluQHZpemFseXMuY29tIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiI2OTgxM2MyMy0xNmE3LTRhZmUtYmZlMy0wYjAyMWUzOTJhOGUiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOlsiQWRtaW4iLCJTdXBlckFkbWluIl0sIlBlcm1pc3Npb24iOlsiUGVybWlzc2lvbnMuQXV0aENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJ1c2luZXNzUGFydG5lckNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CdXNpbmVzc1BhcnRuZXJDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkJ1c2luZXNzUGFydG5lckNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQnVzaW5lc3NQYXJ0bmVyQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLk9yZ2FuaXphdGlvbkNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Pcmdhbml6YXRpb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLk9yZ2FuaXphdGlvbkNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuT3JnYW5pemF0aW9uQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlcGFydG1lbnRzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkRlcGFydG1lbnRzQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50c0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGVwYXJ0bWVudHNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuRGVwYXJ0bWVudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlc2lnbmF0aW9uQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkRlc2lnbmF0aW9uQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXNpZ25hdGlvbkNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGVzaWduYXRpb25DbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQ2FtcHVzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkNhbXB1c0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2FtcHVzQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5DYW1wdXNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuV2FyZWhvdXNlQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLldhcmVob3VzZUNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuV2FyZWhvdXNlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5XYXJlaG91c2VDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuTG9jYXRpb25DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuTG9jYXRpb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkxvY2F0aW9uQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5Mb2NhdGlvbkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5CYW5rQWNjb3VudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CYW5rQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmFua0FjY291bnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkJhbmtBY2NvdW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJhbmtTdGF0ZW1lbnRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5DYXNoQWNjb3VudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5DYXNoQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2FzaEFjY291bnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkNhc2hBY2NvdW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkNhdGVnb3JpZXNDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5Qcm9kdWN0c0NsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Qcm9kdWN0c0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUHJvZHVjdHNDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlByb2R1Y3RzQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLldvcmtmbG93U3RhdHVzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLldvcmtmbG93U3RhdHVzQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5Xb3JrZmxvd1N0YXR1c0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuV29ya2Zsb3dTdGF0dXNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuV29ya2Zsb3dDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuV29ya2Zsb3dDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLldvcmtmbG93Q2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5Xb3JrZmxvd0NsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5MZXZlbDRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuTGV2ZWw0Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5MZXZlbDRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkxldmVsNENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5CYW5rUmVjb25DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmFua1JlY29uQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5CYW5rUmVjb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkJhbmtSZWNvbkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5UcmFuc2FjdGlvblJlY29uQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuSW52b2ljZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJpbGxDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5QYXltZW50Q2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQ3JlZGl0Tm90ZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlYml0Tm90ZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5EZWJpdE5vdGVDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkRlYml0Tm90ZUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGViaXROb3RlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkpvdXJuYWxFbnRyeUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Kb3VybmFsRW50cnlDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkpvdXJuYWxFbnRyeUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuSm91cm5hbEVudHJ5Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJ1ZGdldENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CdWRnZXRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkJ1ZGdldENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQnVkZ2V0Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLlJlY2VpcHRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5SZXF1aXNpdGlvbkNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5SZXF1aXNpdGlvbkNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUmVxdWlzaXRpb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlJlcXVpc2l0aW9uQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLlB1cmNoYXNlT3JkZXJDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5HUk5DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuR1JOQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5HUk5DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkdSTkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5Fc3RpbWF0ZWRCdWRnZXRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuRXN0aW1hdGVkQnVkZ2V0Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5Fc3RpbWF0ZWRCdWRnZXRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkVzdGltYXRlZEJ1ZGdldENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5DaGFydE9mQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuR2VuZXJhbExlZGdlckNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuVHJpYWxCYWxhbmNlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5CYWxhbmNlU2hlZXRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlByb2ZpdExvc3NDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkVtcGxveWVlQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkVtcGxveWVlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5FbXBsb3llZUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRW1wbG95ZWVDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQnVkZ2V0UmVwb3J0Q2xhaW1zLlZpZXciXSwiZXhwIjoxNjUyNDc2MTUwLCJpc3MiOiJodHRwOi8vd2FsZWVkLm5ldCIsImF1ZCI6Imh0dHA6Ly93YWxlZWQubmV0In0.JAAx3pr7IH4n4URqvR9O2dVUavuS-ounZf_oSilHkoo"));
             //headerlist.add(new Header("Authorization","bearer "+token));
             headerlist.add(new Header(name,value));
             Headers headers = new Headers(headerlist);
@@ -3204,7 +3308,7 @@ class ApiTest {
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -3258,7 +3362,7 @@ class ApiTest {
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -3308,31 +3412,34 @@ class ApiTest {
             System.out.println("----------***** NWB_Post_BankStatement *****----------");
 
 
-            String APIBody = "{\"bankAccountId\": 1,\n" +
-                    "    \"description\": \"ttt\",\n" +
-                    "    \"openingBalance\": 500.356,\n" +
-                    "    \"bankStmtLines\": [\n" +
-                    "        {\n" +
-                    "            \"id\": 0,\n" +
-                    "            \"reference\": 1,\n" +
-                    "            \"stmtDate\": \"2022-04-17T19:00:00.000Z\",\n" +
-                    "            \"label\": \"Label 1\",\n" +
-                    "            \"debit\": 700.856,\n" +
-                    "            \"credit\": 0\n" +
-                    "        },\n" +
-                    "        {\n" +
-                    "            \"id\": 0,\n" +
-                    "            \"reference\": 2,\n" +
-                    "            \"stmtDate\": \"2022-04-17T19:00:00.000Z\",\n" +
-                    "            \"label\": \"Label 2\",\n" +
-                    "            \"credit\": 801.456,\n" +
-                    "            \"debit\": 0\n" +
-                    "        }\n" +
-                    "    ]}";
+//            String APIBody = "{\"bankAccountId\": 1,\n" +
+//                    "    \"description\": \"ttt\",\n" +
+//                    "    \"openingBalance\": 500.356,\n" +
+//                    "    \"bankStmtLines\": [\n" +
+//                    "        {\n" +
+//                    "            \"id\": 0,\n" +
+//                    "            \"reference\": 1,\n" +
+//                    "            \"stmtDate\": \"2022-04-17T19:00:00.000Z\",\n" +
+//                    "            \"label\": \"Label 1\",\n" +
+//                    "            \"debit\": 700.856,\n" +
+//                    "            \"credit\": 0\n" +
+//                    "        },\n" +
+//                    "        {\n" +
+//                    "            \"id\": 0,\n" +
+//                    "            \"reference\": 2,\n" +
+//                    "            \"stmtDate\": \"2022-04-17T19:00:00.000Z\",\n" +
+//                    "            \"label\": \"Label 2\",\n" +
+//                    "            \"credit\": 801.456,\n" +
+//                    "            \"debit\": 0\n" +
+//                    "        }\n" +
+//                    "    ]}";
+
+            //Getting API Post Body from the External File
+            File APIBody = new File(System.getProperty("user.dir") + "/allapis/finance/bankstatement.json");
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -3340,7 +3447,7 @@ class ApiTest {
 //            headerlist.add(new Header("user-host-name","hakim"));
 //            headerlist.add(new Header("user-language","English"));
 //            headerlist.add(new Header("user-host-address","::::0"));
-            //headerlist.add(new Header("AuthToken","bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsIlVzZXJJZCI6IjI2IiwiVXNlclR5cGUiOiJBZG1pbiIsImV4cCI6MTc0OTAzNzk0MCwiaXNzIjoic21lc2suaW4iLCJhdWQiOiJyZWFkZXJzIn0.X7a2_Hf9m5aW8ufa02qJhTlbb-Cg3fX1ljkk5szN6pw "));
+            //headerlist.add(new Header("Authorization","bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiTmF2ZWVkIiwiRW1haWwiOiJzdXBlcmFkbWluQHZpemFseXMuY29tIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiI2OTgxM2MyMy0xNmE3LTRhZmUtYmZlMy0wYjAyMWUzOTJhOGUiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOlsiQWRtaW4iLCJTdXBlckFkbWluIl0sIlBlcm1pc3Npb24iOlsiUGVybWlzc2lvbnMuQXV0aENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJ1c2luZXNzUGFydG5lckNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CdXNpbmVzc1BhcnRuZXJDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkJ1c2luZXNzUGFydG5lckNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQnVzaW5lc3NQYXJ0bmVyQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLk9yZ2FuaXphdGlvbkNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Pcmdhbml6YXRpb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLk9yZ2FuaXphdGlvbkNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuT3JnYW5pemF0aW9uQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlcGFydG1lbnRzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkRlcGFydG1lbnRzQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50c0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGVwYXJ0bWVudHNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuRGVwYXJ0bWVudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlc2lnbmF0aW9uQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkRlc2lnbmF0aW9uQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXNpZ25hdGlvbkNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGVzaWduYXRpb25DbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQ2FtcHVzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkNhbXB1c0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2FtcHVzQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5DYW1wdXNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuV2FyZWhvdXNlQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLldhcmVob3VzZUNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuV2FyZWhvdXNlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5XYXJlaG91c2VDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuTG9jYXRpb25DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuTG9jYXRpb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkxvY2F0aW9uQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5Mb2NhdGlvbkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5CYW5rQWNjb3VudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CYW5rQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmFua0FjY291bnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkJhbmtBY2NvdW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJhbmtTdGF0ZW1lbnRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5DYXNoQWNjb3VudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5DYXNoQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2FzaEFjY291bnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkNhc2hBY2NvdW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkNhdGVnb3JpZXNDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5Qcm9kdWN0c0NsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Qcm9kdWN0c0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUHJvZHVjdHNDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlByb2R1Y3RzQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLldvcmtmbG93U3RhdHVzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLldvcmtmbG93U3RhdHVzQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5Xb3JrZmxvd1N0YXR1c0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuV29ya2Zsb3dTdGF0dXNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuV29ya2Zsb3dDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuV29ya2Zsb3dDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLldvcmtmbG93Q2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5Xb3JrZmxvd0NsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5MZXZlbDRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuTGV2ZWw0Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5MZXZlbDRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkxldmVsNENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5CYW5rUmVjb25DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmFua1JlY29uQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5CYW5rUmVjb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkJhbmtSZWNvbkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5UcmFuc2FjdGlvblJlY29uQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuSW52b2ljZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJpbGxDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5QYXltZW50Q2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQ3JlZGl0Tm90ZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlYml0Tm90ZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5EZWJpdE5vdGVDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkRlYml0Tm90ZUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGViaXROb3RlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkpvdXJuYWxFbnRyeUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Kb3VybmFsRW50cnlDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkpvdXJuYWxFbnRyeUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuSm91cm5hbEVudHJ5Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJ1ZGdldENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CdWRnZXRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkJ1ZGdldENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQnVkZ2V0Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLlJlY2VpcHRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5SZXF1aXNpdGlvbkNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5SZXF1aXNpdGlvbkNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUmVxdWlzaXRpb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlJlcXVpc2l0aW9uQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLlB1cmNoYXNlT3JkZXJDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5HUk5DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuR1JOQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5HUk5DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkdSTkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5Fc3RpbWF0ZWRCdWRnZXRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuRXN0aW1hdGVkQnVkZ2V0Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5Fc3RpbWF0ZWRCdWRnZXRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkVzdGltYXRlZEJ1ZGdldENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5DaGFydE9mQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuR2VuZXJhbExlZGdlckNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuVHJpYWxCYWxhbmNlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5CYWxhbmNlU2hlZXRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlByb2ZpdExvc3NDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkVtcGxveWVlQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkVtcGxveWVlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5FbXBsb3llZUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRW1wbG95ZWVDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQnVkZ2V0UmVwb3J0Q2xhaW1zLlZpZXciXSwiZXhwIjoxNjUyNDc2MTUwLCJpc3MiOiJodHRwOi8vd2FsZWVkLm5ldCIsImF1ZCI6Imh0dHA6Ly93YWxlZWQubmV0In0.JAAx3pr7IH4n4URqvR9O2dVUavuS-ounZf_oSilHkoo"));
             //headerlist.add(new Header("Authorization","bearer "+token));
             headerlist.add(new Header(name,value));
             Headers headers = new Headers(headerlist);
@@ -3386,7 +3493,7 @@ class ApiTest {
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -3440,7 +3547,7 @@ class ApiTest {
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -3515,7 +3622,7 @@ class ApiTest {
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -3565,23 +3672,26 @@ class ApiTest {
             System.out.println("----------***** NWB_Post_Budget *****----------");
 
 
-            String APIBody = "{ \"budgetName\": \"Budget 4\",\n" +
-                    "    \"from\": \"2022-04-18\",\n" +
-                    "    \"to\": \"2022-04-19\",\n" +
-                    "    \"budgetLines\": [\n" +
-                    "        {\n" +
-                    "            \"accountId\": \"e188bb29-195a-4d8d-c0dd-08da1ea52f76\",\n" +
-                    "            \"amount\": \"1750.876\"\n" +
-                    "        },\n" +
-                    "        {\n" +
-                    "            \"accountId\": \"11120000-5566-7788-99aa-bbccddeeff00\",\n" +
-                    "            \"amount\": \"2200.675\"\n" +
-                    "        }\n" +
-                    "    ]}";
+//            String APIBody = "{ \"budgetName\": \"Budget 4\",\n" +
+//                    "    \"from\": \"2022-04-18\",\n" +
+//                    "    \"to\": \"2022-04-19\",\n" +
+//                    "    \"budgetLines\": [\n" +
+//                    "        {\n" +
+//                    "            \"accountId\": \"e188bb29-195a-4d8d-c0dd-08da1ea52f76\",\n" +
+//                    "            \"amount\": \"1750.876\"\n" +
+//                    "        },\n" +
+//                    "        {\n" +
+//                    "            \"accountId\": \"11120000-5566-7788-99aa-bbccddeeff00\",\n" +
+//                    "            \"amount\": \"2200.675\"\n" +
+//                    "        }\n" +
+//                    "    ]}";
+
+            //Getting API Post Body from the External File
+            File APIBody = new File(System.getProperty("user.dir") + "/allapis/budget/budget.json");
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -3589,7 +3699,7 @@ class ApiTest {
 //            headerlist.add(new Header("user-host-name","hakim"));
 //            headerlist.add(new Header("user-language","English"));
 //            headerlist.add(new Header("user-host-address","::::0"));
-            //headerlist.add(new Header("AuthToken","bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsIlVzZXJJZCI6IjI2IiwiVXNlclR5cGUiOiJBZG1pbiIsImV4cCI6MTc0OTAzNzk0MCwiaXNzIjoic21lc2suaW4iLCJhdWQiOiJyZWFkZXJzIn0.X7a2_Hf9m5aW8ufa02qJhTlbb-Cg3fX1ljkk5szN6pw "));
+            //headerlist.add(new Header("Authorization","bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiTmF2ZWVkIiwiRW1haWwiOiJzdXBlcmFkbWluQHZpemFseXMuY29tIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiI2OTgxM2MyMy0xNmE3LTRhZmUtYmZlMy0wYjAyMWUzOTJhOGUiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOlsiQWRtaW4iLCJTdXBlckFkbWluIl0sIlBlcm1pc3Npb24iOlsiUGVybWlzc2lvbnMuQXV0aENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJ1c2luZXNzUGFydG5lckNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CdXNpbmVzc1BhcnRuZXJDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkJ1c2luZXNzUGFydG5lckNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQnVzaW5lc3NQYXJ0bmVyQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLk9yZ2FuaXphdGlvbkNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Pcmdhbml6YXRpb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLk9yZ2FuaXphdGlvbkNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuT3JnYW5pemF0aW9uQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlcGFydG1lbnRzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkRlcGFydG1lbnRzQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50c0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGVwYXJ0bWVudHNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuRGVwYXJ0bWVudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlc2lnbmF0aW9uQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkRlc2lnbmF0aW9uQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXNpZ25hdGlvbkNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGVzaWduYXRpb25DbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQ2FtcHVzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkNhbXB1c0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2FtcHVzQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5DYW1wdXNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuV2FyZWhvdXNlQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLldhcmVob3VzZUNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuV2FyZWhvdXNlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5XYXJlaG91c2VDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuTG9jYXRpb25DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuTG9jYXRpb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkxvY2F0aW9uQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5Mb2NhdGlvbkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5CYW5rQWNjb3VudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CYW5rQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmFua0FjY291bnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkJhbmtBY2NvdW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJhbmtTdGF0ZW1lbnRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5DYXNoQWNjb3VudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5DYXNoQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2FzaEFjY291bnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkNhc2hBY2NvdW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkNhdGVnb3JpZXNDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5Qcm9kdWN0c0NsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Qcm9kdWN0c0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUHJvZHVjdHNDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlByb2R1Y3RzQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLldvcmtmbG93U3RhdHVzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLldvcmtmbG93U3RhdHVzQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5Xb3JrZmxvd1N0YXR1c0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuV29ya2Zsb3dTdGF0dXNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuV29ya2Zsb3dDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuV29ya2Zsb3dDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLldvcmtmbG93Q2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5Xb3JrZmxvd0NsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5MZXZlbDRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuTGV2ZWw0Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5MZXZlbDRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkxldmVsNENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5CYW5rUmVjb25DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmFua1JlY29uQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5CYW5rUmVjb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkJhbmtSZWNvbkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5UcmFuc2FjdGlvblJlY29uQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuSW52b2ljZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJpbGxDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5QYXltZW50Q2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQ3JlZGl0Tm90ZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlYml0Tm90ZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5EZWJpdE5vdGVDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkRlYml0Tm90ZUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGViaXROb3RlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkpvdXJuYWxFbnRyeUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Kb3VybmFsRW50cnlDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkpvdXJuYWxFbnRyeUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuSm91cm5hbEVudHJ5Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJ1ZGdldENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CdWRnZXRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkJ1ZGdldENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQnVkZ2V0Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLlJlY2VpcHRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5SZXF1aXNpdGlvbkNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5SZXF1aXNpdGlvbkNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUmVxdWlzaXRpb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlJlcXVpc2l0aW9uQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLlB1cmNoYXNlT3JkZXJDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5HUk5DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuR1JOQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5HUk5DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkdSTkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5Fc3RpbWF0ZWRCdWRnZXRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuRXN0aW1hdGVkQnVkZ2V0Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5Fc3RpbWF0ZWRCdWRnZXRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkVzdGltYXRlZEJ1ZGdldENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5DaGFydE9mQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuR2VuZXJhbExlZGdlckNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuVHJpYWxCYWxhbmNlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5CYWxhbmNlU2hlZXRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlByb2ZpdExvc3NDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkVtcGxveWVlQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkVtcGxveWVlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5FbXBsb3llZUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRW1wbG95ZWVDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQnVkZ2V0UmVwb3J0Q2xhaW1zLlZpZXciXSwiZXhwIjoxNjUyNDc2MTUwLCJpc3MiOiJodHRwOi8vd2FsZWVkLm5ldCIsImF1ZCI6Imh0dHA6Ly93YWxlZWQubmV0In0.JAAx3pr7IH4n4URqvR9O2dVUavuS-ounZf_oSilHkoo"));
             //headerlist.add(new Header("Authorization","bearer "+token));
             headerlist.add(new Header(name,value));
             Headers headers = new Headers(headerlist);
@@ -3624,58 +3734,7 @@ class ApiTest {
         }
 
 
-        @Test
-        @Order(62)
-        public void NWB_Get_Budget()
-        {
-            System.out.println("----------***** NWB_Get_Budget *****----------");
 
-
-            String APIBody = "{}";
-
-
-            List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
-//            headerlist.add(new Header("device-id","1"));
-//            headerlist.add(new Header("user-agents","postman"));
-//            headerlist.add(new Header("device-type","web")); //check this
-//            headerlist.add(new Header("license-key","213DD508-876F-4DD3-BBC1-0A33CC54A6C0")); //check this
-//            headerlist.add(new Header("user-host-name","hakim"));
-//            headerlist.add(new Header("user-language","English"));
-//            headerlist.add(new Header("user-host-address","::::0"));
-            //headerlist.add(new Header("AuthToken","bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsIlVzZXJJZCI6IjI2IiwiVXNlclR5cGUiOiJBZG1pbiIsImV4cCI6MTc0OTAzNzk0MCwiaXNzIjoic21lc2suaW4iLCJhdWQiOiJyZWFkZXJzIn0.X7a2_Hf9m5aW8ufa02qJhTlbb-Cg3fX1ljkk5szN6pw "));
-            //headerlist.add(new Header("Authorization","bearer "+token));
-            headerlist.add(new Header(name,value));
-            Headers headers = new Headers(headerlist);
-
-
-
-            Response r = given().body(APIBody).
-                    headers(headers).
-                    when().
-                    get("/api/Budget");
-
-            //r.prettyPrint();
-            String body = r.getBody().asString();
-            //ResponseBody  body = r.getBody();
-            System.out.println(body);
-
-            int statusCode = r.getStatusCode();
-            System.out.println(statusCode);
-
-            //Assert that correct status code is returned.
-            //assertEquals(statusCode /*actual value*/, 200 /*expected value*/);
-
-
-//            String bodyAsString = body.asString();
-//            System.out.println(bodyAsString);
-
-//            if(!bodyAsString.contains("Data Fetched Successfully from Database") || !bodyAsString.contains("true"))
-//            {
-//                System.out.println("(API responded wrong)");
-//                fail();
-//            }
-        }
 
 
         @Test
@@ -3689,7 +3748,7 @@ class ApiTest {
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -3756,7 +3815,7 @@ class ApiTest {
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -3798,24 +3857,240 @@ class ApiTest {
 //            }
         }
 
-
         @Test
         @Order(65)
-        public void NWB_Post_GeneralLedger()
+        public void NWB_Post_EstimatedBudget()
         {
-            System.out.println("----------***** NWB_Post_GeneralLedger *****----------");
+            System.out.println("----------***** NWB_Post_EstimatedBudget *****----------");
 
 
-            String APIBody = "{\"docDate\": \"2022-04-01\",\n" +
-                    "    \"docDate2\": \"2022-04-21\",\n" +
-                    "    \"accountName\": \"\",\n" +
-                    "    \"businessPartnerName\": \"\",\n" +
-                    "    \"warehouseName\": \"\",\n" +
-                    "    \"campusName\": \"\"}";
+//            String APIBody = "{
+//            "id": 0,
+//            "budgetId": 1,
+//            "estimatedBudgetName": "Estimated API",
+//            "from": "2021-06-01T00:00:00",
+//            "to": "2022-06-30T00:00:00",
+//            "estimatedBudgetLines": [
+//        {
+//            "accountId": "52110000-5566-7788-99aa-bbccddeeff00",
+//            "amount": 50000,
+//            "calculationType": 1,
+//            "value": 100,
+//            "estimatedValue": 50100
+//        },
+//        {
+//            "accountId": "11120000-5566-7788-99aa-bbccddeeff00",
+//            "amount": 100000,
+//            "calculationType": 1,
+//            "value": 100,
+//            "estimatedValue": 100100
+//        },
+//        {
+//            "accountId": "11130000-5566-7788-99aa-bbccddeeff00",
+//            "amount": 60000,
+//            "calculationType": 1,
+//            "value": 100,
+//            "estimatedValue": 60100
+//        },
+//        {
+//            "accountId": "52120000-5566-7788-99aa-bbccddeeff00",
+//            "amount": 80000,
+//            "calculationType": 1,
+//            "value": 100,
+//            "estimatedValue": 80100
+//        }
+//    ]}";
+
+            //Getting API Post Body from the External File
+            File APIBody = new File(System.getProperty("user.dir") + "/allapis/budget/estimatedbudget.json");
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
+//            headerlist.add(new Header("device-id","1"));
+//            headerlist.add(new Header("user-agents","postman"));
+//            headerlist.add(new Header("device-type","web")); //check this
+//            headerlist.add(new Header("license-key","213DD508-876F-4DD3-BBC1-0A33CC54A6C0")); //check this
+//            headerlist.add(new Header("user-host-name","hakim"));
+//            headerlist.add(new Header("user-language","English"));
+//            headerlist.add(new Header("user-host-address","::::0"));
+            //headerlist.add(new Header("Authorization","bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiTmF2ZWVkIiwiRW1haWwiOiJzdXBlcmFkbWluQHZpemFseXMuY29tIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiJiZWY3MzMzYy1jZWI2LTQyMjUtYjNkOS0xNzFhNzJmOTg2ZWYiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOlsiQWRtaW4iLCJTdXBlckFkbWluIl0sIlBlcm1pc3Npb24iOlsiUGVybWlzc2lvbnMuQXV0aENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJ1c2luZXNzUGFydG5lckNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CdXNpbmVzc1BhcnRuZXJDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkJ1c2luZXNzUGFydG5lckNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQnVzaW5lc3NQYXJ0bmVyQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLk9yZ2FuaXphdGlvbkNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Pcmdhbml6YXRpb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLk9yZ2FuaXphdGlvbkNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuT3JnYW5pemF0aW9uQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlcGFydG1lbnRzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkRlcGFydG1lbnRzQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50c0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGVwYXJ0bWVudHNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuRGVwYXJ0bWVudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlc2lnbmF0aW9uQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkRlc2lnbmF0aW9uQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXNpZ25hdGlvbkNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGVzaWduYXRpb25DbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQ2FtcHVzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkNhbXB1c0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2FtcHVzQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5DYW1wdXNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuV2FyZWhvdXNlQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLldhcmVob3VzZUNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuV2FyZWhvdXNlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5XYXJlaG91c2VDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuTG9jYXRpb25DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuTG9jYXRpb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkxvY2F0aW9uQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5Mb2NhdGlvbkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5CYW5rQWNjb3VudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CYW5rQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmFua0FjY291bnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkJhbmtBY2NvdW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJhbmtTdGF0ZW1lbnRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5DYXNoQWNjb3VudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5DYXNoQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2FzaEFjY291bnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkNhc2hBY2NvdW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkNhdGVnb3JpZXNDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5Qcm9kdWN0c0NsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Qcm9kdWN0c0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUHJvZHVjdHNDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlByb2R1Y3RzQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLldvcmtmbG93U3RhdHVzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLldvcmtmbG93U3RhdHVzQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5Xb3JrZmxvd1N0YXR1c0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuV29ya2Zsb3dTdGF0dXNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuV29ya2Zsb3dDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuV29ya2Zsb3dDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLldvcmtmbG93Q2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5Xb3JrZmxvd0NsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5MZXZlbDRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuTGV2ZWw0Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5MZXZlbDRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkxldmVsNENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5CYW5rUmVjb25DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmFua1JlY29uQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5CYW5rUmVjb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkJhbmtSZWNvbkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5UcmFuc2FjdGlvblJlY29uQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuSW52b2ljZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJpbGxDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5QYXltZW50Q2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQ3JlZGl0Tm90ZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlYml0Tm90ZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5EZWJpdE5vdGVDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkRlYml0Tm90ZUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGViaXROb3RlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkpvdXJuYWxFbnRyeUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Kb3VybmFsRW50cnlDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkpvdXJuYWxFbnRyeUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuSm91cm5hbEVudHJ5Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJ1ZGdldENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CdWRnZXRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkJ1ZGdldENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQnVkZ2V0Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLlJlY2VpcHRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5SZXF1aXNpdGlvbkNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5SZXF1aXNpdGlvbkNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUmVxdWlzaXRpb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlJlcXVpc2l0aW9uQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLlB1cmNoYXNlT3JkZXJDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5HUk5DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuR1JOQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5HUk5DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkdSTkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5Fc3RpbWF0ZWRCdWRnZXRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuRXN0aW1hdGVkQnVkZ2V0Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5Fc3RpbWF0ZWRCdWRnZXRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkVzdGltYXRlZEJ1ZGdldENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5FbXBsb3llZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5FbXBsb3llZUNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuRW1wbG95ZWVDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkVtcGxveWVlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLlBheXJvbGxJdGVtQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLlBheXJvbGxJdGVtQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5QYXlyb2xsSXRlbUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuUGF5cm9sbEl0ZW1DbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuUGF5cm9sbEl0ZW1FbXBsb3llZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5QYXlyb2xsSXRlbUVtcGxveWVlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5QYXlyb2xsSXRlbUVtcGxveWVlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5QYXlyb2xsSXRlbUVtcGxveWVlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLlBheXJvbGxUcmFuc2FjdGlvbkNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5QYXlyb2xsVHJhbnNhY3Rpb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlBheXJvbGxUcmFuc2FjdGlvbkNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuUGF5cm9sbFRyYW5zYWN0aW9uQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkNoYXJ0T2ZBY2NvdW50Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5HZW5lcmFsTGVkZ2VyQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5UcmlhbEJhbGFuY2VDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkJhbGFuY2VTaGVldENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUHJvZml0TG9zc0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQnVkZ2V0UmVwb3J0Q2xhaW1zLlZpZXciXSwiZXhwIjoxNjU0OTA0Njg0LCJpc3MiOiJodHRwOi8vd2FsZWVkLm5ldCIsImF1ZCI6Imh0dHA6Ly93YWxlZWQubmV0In0.65qpum7a1Bw85chxWigGvE7PtIVg-0TA1XyOQJ85QDA"));
+            //headerlist.add(new Header("Authorization","bearer "+token));
+            headerlist.add(new Header(name,value));
+            Headers headers = new Headers(headerlist);
+
+
+
+            Response r = given().body(APIBody).
+                    headers(headers).
+                    when().
+                    post("/api/EstimatedBudget");
+
+            //r.prettyPrint();
+            String body = r.getBody().asString();
+            //ResponseBody  body = r.getBody();
+            System.out.println(body);
+
+            int statusCode = r.getStatusCode();
+            System.out.println(statusCode);
+
+            //Assert that correct status code is returned.
+            //assertEquals(statusCode /*actual value*/, 200 /*expected value*/);
+
+
+//            String bodyAsString = body.asString();
+//            System.out.println(bodyAsString);
+
+//            if(!bodyAsString.contains("Data Fetched Successfully from Database") || !bodyAsString.contains("true"))
+//            {
+//                System.out.println("(API responded wrong)");
+//                fail();
+//            }
+        }
+
+        @Test
+        @Order(67)
+        public void NWB_Post_BudgetReport()
+        {
+            System.out.println("----------***** NWB_Post_BudgetReport *****----------");
+
+
+//            String APIBody = "{ \"to\": \"2022-06-08\",\n" +
+//                    "    \"budgetName\": \"Budget 01\"}";
+
+            //Getting API Post Body from the External File
+            File APIBody = new File(System.getProperty("user.dir") + "/allapis/budget/budgetreport.json");
+
+
+            List<Header> headerlist = new ArrayList<Header>();
+            headerlist.add(new Header(headerType, headerMediaType));
+//            headerlist.add(new Header("device-id","1"));
+//            headerlist.add(new Header("user-agents","postman"));
+//            headerlist.add(new Header("device-type","web")); //check this
+//            headerlist.add(new Header("license-key","213DD508-876F-4DD3-BBC1-0A33CC54A6C0")); //check this
+//            headerlist.add(new Header("user-host-name","hakim"));
+//            headerlist.add(new Header("user-language","English"));
+//            headerlist.add(new Header("user-host-address","::::0"));
+            //headerlist.add(new Header("Authorization","bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiTmF2ZWVkIiwiRW1haWwiOiJzdXBlcmFkbWluQHZpemFseXMuY29tIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiJiZWY3MzMzYy1jZWI2LTQyMjUtYjNkOS0xNzFhNzJmOTg2ZWYiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOlsiQWRtaW4iLCJTdXBlckFkbWluIl0sIlBlcm1pc3Npb24iOlsiUGVybWlzc2lvbnMuQXV0aENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJ1c2luZXNzUGFydG5lckNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CdXNpbmVzc1BhcnRuZXJDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkJ1c2luZXNzUGFydG5lckNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQnVzaW5lc3NQYXJ0bmVyQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLk9yZ2FuaXphdGlvbkNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Pcmdhbml6YXRpb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLk9yZ2FuaXphdGlvbkNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuT3JnYW5pemF0aW9uQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlcGFydG1lbnRzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkRlcGFydG1lbnRzQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50c0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGVwYXJ0bWVudHNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuRGVwYXJ0bWVudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlc2lnbmF0aW9uQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkRlc2lnbmF0aW9uQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXNpZ25hdGlvbkNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGVzaWduYXRpb25DbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQ2FtcHVzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkNhbXB1c0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2FtcHVzQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5DYW1wdXNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuV2FyZWhvdXNlQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLldhcmVob3VzZUNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuV2FyZWhvdXNlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5XYXJlaG91c2VDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuTG9jYXRpb25DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuTG9jYXRpb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkxvY2F0aW9uQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5Mb2NhdGlvbkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5CYW5rQWNjb3VudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CYW5rQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmFua0FjY291bnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkJhbmtBY2NvdW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJhbmtTdGF0ZW1lbnRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5DYXNoQWNjb3VudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5DYXNoQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2FzaEFjY291bnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkNhc2hBY2NvdW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkNhdGVnb3JpZXNDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5Qcm9kdWN0c0NsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Qcm9kdWN0c0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUHJvZHVjdHNDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlByb2R1Y3RzQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLldvcmtmbG93U3RhdHVzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLldvcmtmbG93U3RhdHVzQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5Xb3JrZmxvd1N0YXR1c0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuV29ya2Zsb3dTdGF0dXNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuV29ya2Zsb3dDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuV29ya2Zsb3dDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLldvcmtmbG93Q2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5Xb3JrZmxvd0NsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5MZXZlbDRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuTGV2ZWw0Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5MZXZlbDRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkxldmVsNENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5CYW5rUmVjb25DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmFua1JlY29uQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5CYW5rUmVjb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkJhbmtSZWNvbkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5UcmFuc2FjdGlvblJlY29uQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuSW52b2ljZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJpbGxDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5QYXltZW50Q2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQ3JlZGl0Tm90ZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlYml0Tm90ZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5EZWJpdE5vdGVDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkRlYml0Tm90ZUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGViaXROb3RlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkpvdXJuYWxFbnRyeUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Kb3VybmFsRW50cnlDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkpvdXJuYWxFbnRyeUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuSm91cm5hbEVudHJ5Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJ1ZGdldENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CdWRnZXRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkJ1ZGdldENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQnVkZ2V0Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLlJlY2VpcHRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5SZXF1aXNpdGlvbkNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5SZXF1aXNpdGlvbkNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUmVxdWlzaXRpb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlJlcXVpc2l0aW9uQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLlB1cmNoYXNlT3JkZXJDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5HUk5DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuR1JOQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5HUk5DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkdSTkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5Fc3RpbWF0ZWRCdWRnZXRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuRXN0aW1hdGVkQnVkZ2V0Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5Fc3RpbWF0ZWRCdWRnZXRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkVzdGltYXRlZEJ1ZGdldENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5FbXBsb3llZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5FbXBsb3llZUNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuRW1wbG95ZWVDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkVtcGxveWVlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLlBheXJvbGxJdGVtQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLlBheXJvbGxJdGVtQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5QYXlyb2xsSXRlbUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuUGF5cm9sbEl0ZW1DbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuUGF5cm9sbEl0ZW1FbXBsb3llZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5QYXlyb2xsSXRlbUVtcGxveWVlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5QYXlyb2xsSXRlbUVtcGxveWVlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5QYXlyb2xsSXRlbUVtcGxveWVlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLlBheXJvbGxUcmFuc2FjdGlvbkNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5QYXlyb2xsVHJhbnNhY3Rpb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlBheXJvbGxUcmFuc2FjdGlvbkNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuUGF5cm9sbFRyYW5zYWN0aW9uQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkNoYXJ0T2ZBY2NvdW50Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5HZW5lcmFsTGVkZ2VyQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5UcmlhbEJhbGFuY2VDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkJhbGFuY2VTaGVldENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUHJvZml0TG9zc0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQnVkZ2V0UmVwb3J0Q2xhaW1zLlZpZXciXSwiZXhwIjoxNjU0OTA0Njg0LCJpc3MiOiJodHRwOi8vd2FsZWVkLm5ldCIsImF1ZCI6Imh0dHA6Ly93YWxlZWQubmV0In0.65qpum7a1Bw85chxWigGvE7PtIVg-0TA1XyOQJ85QDA"));
+            //headerlist.add(new Header("Authorization","bearer "+token));
+            headerlist.add(new Header(name,value));
+            Headers headers = new Headers(headerlist);
+
+
+
+            Response r = given().body(APIBody).
+                    headers(headers).
+                    when().
+                    post("/api/Budget/BudgetReport");
+
+            //r.prettyPrint();
+            String body = r.getBody().asString();
+            //ResponseBody  body = r.getBody();
+            System.out.println(body);
+
+            int statusCode = r.getStatusCode();
+            System.out.println(statusCode);
+
+            //Assert that correct status code is returned.
+            //assertEquals(statusCode /*actual value*/, 200 /*expected value*/);
+
+
+//            String bodyAsString = body.asString();
+//            System.out.println(bodyAsString);
+
+//            if(!bodyAsString.contains("Data Fetched Successfully from Database") || !bodyAsString.contains("true"))
+//            {
+//                System.out.println("(API responded wrong)");
+//                fail();
+//            }
+        }
+
+
+
+        @Test
+        @Order(66)
+        public void NWB_Get_EstimatedBudget()
+        {
+            System.out.println("----------***** NWB_Get_EstimatedBudget *****----------");
+
+
+            String APIBody = "{}";
+
+
+
+
+            List<Header> headerlist = new ArrayList<Header>();
+            headerlist.add(new Header(headerType, headerMediaType));
+//            headerlist.add(new Header("device-id","1"));
+//            headerlist.add(new Header("user-agents","postman"));
+//            headerlist.add(new Header("device-type","web")); //check this
+//            headerlist.add(new Header("license-key","213DD508-876F-4DD3-BBC1-0A33CC54A6C0")); //check this
+//            headerlist.add(new Header("user-host-name","hakim"));
+//            headerlist.add(new Header("user-language","English"));
+//            headerlist.add(new Header("user-host-address","::::0"));
+            //headerlist.add(new Header("Authorization","bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiTmF2ZWVkIiwiRW1haWwiOiJzdXBlcmFkbWluQHZpemFseXMuY29tIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiJiZWY3MzMzYy1jZWI2LTQyMjUtYjNkOS0xNzFhNzJmOTg2ZWYiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOlsiQWRtaW4iLCJTdXBlckFkbWluIl0sIlBlcm1pc3Npb24iOlsiUGVybWlzc2lvbnMuQXV0aENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJ1c2luZXNzUGFydG5lckNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CdXNpbmVzc1BhcnRuZXJDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkJ1c2luZXNzUGFydG5lckNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQnVzaW5lc3NQYXJ0bmVyQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLk9yZ2FuaXphdGlvbkNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Pcmdhbml6YXRpb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLk9yZ2FuaXphdGlvbkNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuT3JnYW5pemF0aW9uQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlcGFydG1lbnRzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkRlcGFydG1lbnRzQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50c0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGVwYXJ0bWVudHNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuRGVwYXJ0bWVudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlc2lnbmF0aW9uQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkRlc2lnbmF0aW9uQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXNpZ25hdGlvbkNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGVzaWduYXRpb25DbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQ2FtcHVzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkNhbXB1c0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2FtcHVzQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5DYW1wdXNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuV2FyZWhvdXNlQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLldhcmVob3VzZUNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuV2FyZWhvdXNlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5XYXJlaG91c2VDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuTG9jYXRpb25DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuTG9jYXRpb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkxvY2F0aW9uQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5Mb2NhdGlvbkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5CYW5rQWNjb3VudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CYW5rQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmFua0FjY291bnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkJhbmtBY2NvdW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJhbmtTdGF0ZW1lbnRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5DYXNoQWNjb3VudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5DYXNoQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2FzaEFjY291bnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkNhc2hBY2NvdW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkNhdGVnb3JpZXNDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5Qcm9kdWN0c0NsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Qcm9kdWN0c0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUHJvZHVjdHNDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlByb2R1Y3RzQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLldvcmtmbG93U3RhdHVzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLldvcmtmbG93U3RhdHVzQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5Xb3JrZmxvd1N0YXR1c0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuV29ya2Zsb3dTdGF0dXNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuV29ya2Zsb3dDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuV29ya2Zsb3dDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLldvcmtmbG93Q2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5Xb3JrZmxvd0NsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5MZXZlbDRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuTGV2ZWw0Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5MZXZlbDRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkxldmVsNENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5CYW5rUmVjb25DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmFua1JlY29uQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5CYW5rUmVjb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkJhbmtSZWNvbkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5UcmFuc2FjdGlvblJlY29uQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuSW52b2ljZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJpbGxDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5QYXltZW50Q2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQ3JlZGl0Tm90ZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlYml0Tm90ZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5EZWJpdE5vdGVDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkRlYml0Tm90ZUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGViaXROb3RlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkpvdXJuYWxFbnRyeUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Kb3VybmFsRW50cnlDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkpvdXJuYWxFbnRyeUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuSm91cm5hbEVudHJ5Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJ1ZGdldENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CdWRnZXRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkJ1ZGdldENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQnVkZ2V0Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLlJlY2VpcHRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5SZXF1aXNpdGlvbkNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5SZXF1aXNpdGlvbkNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUmVxdWlzaXRpb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlJlcXVpc2l0aW9uQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLlB1cmNoYXNlT3JkZXJDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5HUk5DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuR1JOQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5HUk5DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkdSTkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5Fc3RpbWF0ZWRCdWRnZXRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuRXN0aW1hdGVkQnVkZ2V0Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5Fc3RpbWF0ZWRCdWRnZXRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkVzdGltYXRlZEJ1ZGdldENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5FbXBsb3llZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5FbXBsb3llZUNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuRW1wbG95ZWVDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkVtcGxveWVlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLlBheXJvbGxJdGVtQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLlBheXJvbGxJdGVtQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5QYXlyb2xsSXRlbUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuUGF5cm9sbEl0ZW1DbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuUGF5cm9sbEl0ZW1FbXBsb3llZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5QYXlyb2xsSXRlbUVtcGxveWVlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5QYXlyb2xsSXRlbUVtcGxveWVlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5QYXlyb2xsSXRlbUVtcGxveWVlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLlBheXJvbGxUcmFuc2FjdGlvbkNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5QYXlyb2xsVHJhbnNhY3Rpb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlBheXJvbGxUcmFuc2FjdGlvbkNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuUGF5cm9sbFRyYW5zYWN0aW9uQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkNoYXJ0T2ZBY2NvdW50Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5HZW5lcmFsTGVkZ2VyQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5UcmlhbEJhbGFuY2VDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkJhbGFuY2VTaGVldENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUHJvZml0TG9zc0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQnVkZ2V0UmVwb3J0Q2xhaW1zLlZpZXciXSwiZXhwIjoxNjU0OTA0Njg0LCJpc3MiOiJodHRwOi8vd2FsZWVkLm5ldCIsImF1ZCI6Imh0dHA6Ly93YWxlZWQubmV0In0.65qpum7a1Bw85chxWigGvE7PtIVg-0TA1XyOQJ85QDA"));
+            //headerlist.add(new Header("Authorization","bearer "+token));
+            headerlist.add(new Header(name,value));
+            Headers headers = new Headers(headerlist);
+
+
+
+            Response r = given().body(APIBody).
+                    headers(headers).
+                    when().
+                    get("/api/EstimatedBudget");
+
+            //r.prettyPrint();
+            String body = r.getBody().asString();
+            //ResponseBody  body = r.getBody();
+            System.out.println(body);
+
+            int statusCode = r.getStatusCode();
+            System.out.println(statusCode);
+
+            //Assert that correct status code is returned.
+            //assertEquals(statusCode /*actual value*/, 200 /*expected value*/);
+
+
+//            String bodyAsString = body.asString();
+//            System.out.println(bodyAsString);
+
+//            if(!bodyAsString.contains("Data Fetched Successfully from Database") || !bodyAsString.contains("true"))
+//            {
+//                System.out.println("(API responded wrong)");
+//                fail();
+//            }
+        }
+
+
+        @Test
+        @Order(65)
+        public void NWB_Post_Receipt()
+        {
+            System.out.println("----------***** NWB_Post_Receipt *****----------");
+
+
+//            String APIBody = "{ \"paymentRegisterType\": 2,\n" +
+//                    "    \"paymentType\": 0,\n" +
+//                    "    \"businessPartnerId\": 8,\n" +
+//                    "    \"accountId\": \"22160000-5566-7788-99aa-bbccddeeff00\",\n" +
+//                    "    \"paymentDate\": \"2022-06-08\",\n" +
+//                    "    \"paymentRegisterId\": \"189c1298-ed9e-459a-2120-08da479543c5\",\n" +
+//                    "    \"campusId\": 1,\n" +
+//                    "    \"description\": \"eee\",\n" +
+//                    "    \"grossPayment\": 12000,\n" +
+//                    "    \"discount\": 100,\n" +
+//                    "    \"salesTax\": 50,\n" +
+//                    "    \"incomeTax\": 50,\n" +
+//                    "    \"srbTax\": 20,\n" +
+//                    "    \"isSubmit\": false}";
+
+            //Getting API Post Body from the External File
+            File APIBody = new File(System.getProperty("user.dir") + "/allapis/finance/receipt.json");
+
+
+            List<Header> headerlist = new ArrayList<Header>();
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this
@@ -3824,6 +4099,125 @@ class ApiTest {
 //            headerlist.add(new Header("user-language","English"));
 //            headerlist.add(new Header("user-host-address","::::0"));
             //headerlist.add(new Header("AuthToken","bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsIlVzZXJJZCI6IjI2IiwiVXNlclR5cGUiOiJBZG1pbiIsImV4cCI6MTc0OTAzNzk0MCwiaXNzIjoic21lc2suaW4iLCJhdWQiOiJyZWFkZXJzIn0.X7a2_Hf9m5aW8ufa02qJhTlbb-Cg3fX1ljkk5szN6pw "));
+            //headerlist.add(new Header("Authorization","bearer "+token));
+            headerlist.add(new Header(name,value));
+            Headers headers = new Headers(headerlist);
+
+
+
+            Response r = given().body(APIBody).
+                    headers(headers).
+                    when().
+                    post("/api/Receipt");
+
+            //r.prettyPrint();
+            String body = r.getBody().asString();
+            //ResponseBody  body = r.getBody();
+            System.out.println(body);
+
+            int statusCode = r.getStatusCode();
+            System.out.println(statusCode);
+
+            //Assert that correct status code is returned.
+            //assertEquals(statusCode /*actual value*/, 200 /*expected value*/);
+
+
+//            String bodyAsString = body.asString();
+//            System.out.println(bodyAsString);
+
+//            if(!bodyAsString.contains("Data Fetched Successfully from Database") || !bodyAsString.contains("true"))
+//            {
+//                System.out.println("(API responded wrong)");
+//                fail();
+//            }
+        }
+
+
+        @Test
+        @Order(66)
+        public void NWB_Get_Receipt()
+        {
+            System.out.println("----------***** NWB_Get_Receipt *****----------");
+
+
+            String APIBody = "{}";
+
+
+
+
+            List<Header> headerlist = new ArrayList<Header>();
+            headerlist.add(new Header(headerType, headerMediaType));
+//            headerlist.add(new Header("device-id","1"));
+//            headerlist.add(new Header("user-agents","postman"));
+//            headerlist.add(new Header("device-type","web")); //check this
+//            headerlist.add(new Header("license-key","213DD508-876F-4DD3-BBC1-0A33CC54A6C0")); //check this
+//            headerlist.add(new Header("user-host-name","hakim"));
+//            headerlist.add(new Header("user-language","English"));
+//            headerlist.add(new Header("user-host-address","::::0"));
+            //headerlist.add(new Header("Authorization","bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiTmF2ZWVkIiwiRW1haWwiOiJzdXBlcmFkbWluQHZpemFseXMuY29tIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiJiZWY3MzMzYy1jZWI2LTQyMjUtYjNkOS0xNzFhNzJmOTg2ZWYiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOlsiQWRtaW4iLCJTdXBlckFkbWluIl0sIlBlcm1pc3Npb24iOlsiUGVybWlzc2lvbnMuQXV0aENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJ1c2luZXNzUGFydG5lckNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CdXNpbmVzc1BhcnRuZXJDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkJ1c2luZXNzUGFydG5lckNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQnVzaW5lc3NQYXJ0bmVyQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLk9yZ2FuaXphdGlvbkNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Pcmdhbml6YXRpb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLk9yZ2FuaXphdGlvbkNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuT3JnYW5pemF0aW9uQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlcGFydG1lbnRzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkRlcGFydG1lbnRzQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50c0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGVwYXJ0bWVudHNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuRGVwYXJ0bWVudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlc2lnbmF0aW9uQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkRlc2lnbmF0aW9uQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXNpZ25hdGlvbkNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGVzaWduYXRpb25DbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQ2FtcHVzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkNhbXB1c0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2FtcHVzQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5DYW1wdXNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuV2FyZWhvdXNlQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLldhcmVob3VzZUNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuV2FyZWhvdXNlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5XYXJlaG91c2VDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuTG9jYXRpb25DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuTG9jYXRpb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkxvY2F0aW9uQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5Mb2NhdGlvbkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5CYW5rQWNjb3VudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CYW5rQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmFua0FjY291bnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkJhbmtBY2NvdW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJhbmtTdGF0ZW1lbnRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5DYXNoQWNjb3VudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5DYXNoQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2FzaEFjY291bnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkNhc2hBY2NvdW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkNhdGVnb3JpZXNDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5Qcm9kdWN0c0NsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Qcm9kdWN0c0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUHJvZHVjdHNDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlByb2R1Y3RzQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLldvcmtmbG93U3RhdHVzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLldvcmtmbG93U3RhdHVzQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5Xb3JrZmxvd1N0YXR1c0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuV29ya2Zsb3dTdGF0dXNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuV29ya2Zsb3dDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuV29ya2Zsb3dDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLldvcmtmbG93Q2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5Xb3JrZmxvd0NsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5MZXZlbDRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuTGV2ZWw0Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5MZXZlbDRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkxldmVsNENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5CYW5rUmVjb25DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmFua1JlY29uQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5CYW5rUmVjb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkJhbmtSZWNvbkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5UcmFuc2FjdGlvblJlY29uQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuSW52b2ljZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJpbGxDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5QYXltZW50Q2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQ3JlZGl0Tm90ZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlYml0Tm90ZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5EZWJpdE5vdGVDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkRlYml0Tm90ZUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGViaXROb3RlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkpvdXJuYWxFbnRyeUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Kb3VybmFsRW50cnlDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkpvdXJuYWxFbnRyeUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuSm91cm5hbEVudHJ5Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJ1ZGdldENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CdWRnZXRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkJ1ZGdldENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQnVkZ2V0Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLlJlY2VpcHRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5SZXF1aXNpdGlvbkNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5SZXF1aXNpdGlvbkNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUmVxdWlzaXRpb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlJlcXVpc2l0aW9uQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLlB1cmNoYXNlT3JkZXJDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5HUk5DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuR1JOQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5HUk5DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkdSTkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5Fc3RpbWF0ZWRCdWRnZXRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuRXN0aW1hdGVkQnVkZ2V0Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5Fc3RpbWF0ZWRCdWRnZXRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkVzdGltYXRlZEJ1ZGdldENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5FbXBsb3llZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5FbXBsb3llZUNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuRW1wbG95ZWVDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkVtcGxveWVlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLlBheXJvbGxJdGVtQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLlBheXJvbGxJdGVtQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5QYXlyb2xsSXRlbUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuUGF5cm9sbEl0ZW1DbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuUGF5cm9sbEl0ZW1FbXBsb3llZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5QYXlyb2xsSXRlbUVtcGxveWVlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5QYXlyb2xsSXRlbUVtcGxveWVlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5QYXlyb2xsSXRlbUVtcGxveWVlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLlBheXJvbGxUcmFuc2FjdGlvbkNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5QYXlyb2xsVHJhbnNhY3Rpb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlBheXJvbGxUcmFuc2FjdGlvbkNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuUGF5cm9sbFRyYW5zYWN0aW9uQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkNoYXJ0T2ZBY2NvdW50Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5HZW5lcmFsTGVkZ2VyQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5UcmlhbEJhbGFuY2VDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkJhbGFuY2VTaGVldENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUHJvZml0TG9zc0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQnVkZ2V0UmVwb3J0Q2xhaW1zLlZpZXciXSwiZXhwIjoxNjU0OTA0Njg0LCJpc3MiOiJodHRwOi8vd2FsZWVkLm5ldCIsImF1ZCI6Imh0dHA6Ly93YWxlZWQubmV0In0.65qpum7a1Bw85chxWigGvE7PtIVg-0TA1XyOQJ85QDA"));
+            //headerlist.add(new Header("Authorization","bearer "+token));
+            headerlist.add(new Header(name,value));
+            Headers headers = new Headers(headerlist);
+
+
+
+            Response r = given().body(APIBody).
+                    headers(headers).
+                    when().
+                    get("/api/Receipt");
+
+            //r.prettyPrint();
+            String body = r.getBody().asString();
+            //ResponseBody  body = r.getBody();
+            System.out.println(body);
+
+            int statusCode = r.getStatusCode();
+            System.out.println(statusCode);
+
+            //Assert that correct status code is returned.
+            //assertEquals(statusCode /*actual value*/, 200 /*expected value*/);
+
+
+//            String bodyAsString = body.asString();
+//            System.out.println(bodyAsString);
+
+//            if(!bodyAsString.contains("Data Fetched Successfully from Database") || !bodyAsString.contains("true"))
+//            {
+//                System.out.println("(API responded wrong)");
+//                fail();
+//            }
+        }
+
+
+
+        @Test
+        @Order(65)
+        public void NWB_Post_GeneralLedger()
+        {
+            System.out.println("----------***** NWB_Post_GeneralLedger *****----------");
+
+
+//            String APIBody = "{\"docDate\": \"2022-04-01\",\n" +
+//                    "    \"docDate2\": \"2022-04-21\",\n" +
+//                    "    \"accountName\": \"\",\n" +
+//                    "    \"businessPartnerName\": \"\",\n" +
+//                    "    \"warehouseName\": \"\",\n" +
+//                    "    \"campusName\": \"\"}";
+
+            //Getting API Post Body from the External File
+            File APIBody = new File(System.getProperty("user.dir") + "/allapis/report/generalledger.json");
+
+
+            List<Header> headerlist = new ArrayList<Header>();
+            headerlist.add(new Header(headerType, headerMediaType));
+//            headerlist.add(new Header("device-id","1"));
+//            headerlist.add(new Header("user-agents","postman"));
+//            headerlist.add(new Header("device-type","web")); //check this
+//            headerlist.add(new Header("license-key","213DD508-876F-4DD3-BBC1-0A33CC54A6C0")); //check this
+//            headerlist.add(new Header("user-host-name","hakim"));
+//            headerlist.add(new Header("user-language","English"));
+//            headerlist.add(new Header("user-host-address","::::0"));
+            //headerlist.add(new Header("Authorization","bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiTmF2ZWVkIiwiRW1haWwiOiJzdXBlcmFkbWluQHZpemFseXMuY29tIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiI2OTgxM2MyMy0xNmE3LTRhZmUtYmZlMy0wYjAyMWUzOTJhOGUiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOlsiQWRtaW4iLCJTdXBlckFkbWluIl0sIlBlcm1pc3Npb24iOlsiUGVybWlzc2lvbnMuQXV0aENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5BdXRoQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJ1c2luZXNzUGFydG5lckNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CdXNpbmVzc1BhcnRuZXJDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkJ1c2luZXNzUGFydG5lckNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQnVzaW5lc3NQYXJ0bmVyQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLk9yZ2FuaXphdGlvbkNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Pcmdhbml6YXRpb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLk9yZ2FuaXphdGlvbkNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuT3JnYW5pemF0aW9uQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlcGFydG1lbnRzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkRlcGFydG1lbnRzQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50c0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGVwYXJ0bWVudHNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuRGVwYXJ0bWVudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5EZXBhcnRtZW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlc2lnbmF0aW9uQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkRlc2lnbmF0aW9uQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5EZXNpZ25hdGlvbkNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGVzaWduYXRpb25DbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQ2FtcHVzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkNhbXB1c0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2FtcHVzQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5DYW1wdXNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuV2FyZWhvdXNlQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLldhcmVob3VzZUNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuV2FyZWhvdXNlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5XYXJlaG91c2VDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuTG9jYXRpb25DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuTG9jYXRpb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkxvY2F0aW9uQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5Mb2NhdGlvbkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5CYW5rQWNjb3VudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CYW5rQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmFua0FjY291bnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkJhbmtBY2NvdW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJhbmtTdGF0ZW1lbnRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQmFua1N0YXRlbWVudENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5DYXNoQWNjb3VudENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5DYXNoQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2FzaEFjY291bnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkNhc2hBY2NvdW50Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkNhdGVnb3JpZXNDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQ2F0ZWdvcmllc0NsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5Qcm9kdWN0c0NsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Qcm9kdWN0c0NsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUHJvZHVjdHNDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlByb2R1Y3RzQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLldvcmtmbG93U3RhdHVzQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLldvcmtmbG93U3RhdHVzQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5Xb3JrZmxvd1N0YXR1c0NsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuV29ya2Zsb3dTdGF0dXNDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuV29ya2Zsb3dDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuV29ya2Zsb3dDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLldvcmtmbG93Q2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5Xb3JrZmxvd0NsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5MZXZlbDRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuTGV2ZWw0Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5MZXZlbDRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkxldmVsNENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5CYW5rUmVjb25DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmFua1JlY29uQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5CYW5rUmVjb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkJhbmtSZWNvbkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5UcmFuc2FjdGlvblJlY29uQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlRyYW5zYWN0aW9uUmVjb25DbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuSW52b2ljZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5JbnZvaWNlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJpbGxDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQmlsbENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5QYXltZW50Q2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlBheW1lbnRDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQ3JlZGl0Tm90ZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLkVkaXQiLCJQZXJtaXNzaW9ucy5DcmVkaXROb3RlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkRlYml0Tm90ZUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5EZWJpdE5vdGVDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkRlYml0Tm90ZUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRGViaXROb3RlQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkpvdXJuYWxFbnRyeUNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5Kb3VybmFsRW50cnlDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkpvdXJuYWxFbnRyeUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuSm91cm5hbEVudHJ5Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLkJ1ZGdldENsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5CdWRnZXRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkJ1ZGdldENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuQnVkZ2V0Q2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLlJlY2VpcHRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuUmVjZWlwdENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5SZXF1aXNpdGlvbkNsYWltcy5DcmVhdGUiLCJQZXJtaXNzaW9ucy5SZXF1aXNpdGlvbkNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUmVxdWlzaXRpb25DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLlJlcXVpc2l0aW9uQ2xhaW1zLkRlbGV0ZSIsIlBlcm1pc3Npb25zLlB1cmNoYXNlT3JkZXJDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuUHVyY2hhc2VPcmRlckNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5HUk5DbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuR1JOQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5HUk5DbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkdSTkNsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5Fc3RpbWF0ZWRCdWRnZXRDbGFpbXMuQ3JlYXRlIiwiUGVybWlzc2lvbnMuRXN0aW1hdGVkQnVkZ2V0Q2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5Fc3RpbWF0ZWRCdWRnZXRDbGFpbXMuRWRpdCIsIlBlcm1pc3Npb25zLkVzdGltYXRlZEJ1ZGdldENsYWltcy5EZWxldGUiLCJQZXJtaXNzaW9ucy5DaGFydE9mQWNjb3VudENsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuR2VuZXJhbExlZGdlckNsYWltcy5WaWV3IiwiUGVybWlzc2lvbnMuVHJpYWxCYWxhbmNlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5CYWxhbmNlU2hlZXRDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLlByb2ZpdExvc3NDbGFpbXMuVmlldyIsIlBlcm1pc3Npb25zLkVtcGxveWVlQ2xhaW1zLkNyZWF0ZSIsIlBlcm1pc3Npb25zLkVtcGxveWVlQ2xhaW1zLlZpZXciLCJQZXJtaXNzaW9ucy5FbXBsb3llZUNsYWltcy5FZGl0IiwiUGVybWlzc2lvbnMuRW1wbG95ZWVDbGFpbXMuRGVsZXRlIiwiUGVybWlzc2lvbnMuQnVkZ2V0UmVwb3J0Q2xhaW1zLlZpZXciXSwiZXhwIjoxNjUyNDc2MTUwLCJpc3MiOiJodHRwOi8vd2FsZWVkLm5ldCIsImF1ZCI6Imh0dHA6Ly93YWxlZWQubmV0In0.JAAx3pr7IH4n4URqvR9O2dVUavuS-ounZf_oSilHkoo"));
             //headerlist.add(new Header("Authorization","bearer "+token));
             headerlist.add(new Header(name,value));
             Headers headers = new Headers(headerlist);
@@ -3869,7 +4263,7 @@ class ApiTest {
 
 
             List<Header> headerlist = new ArrayList<Header>();
-            headerlist.add(new Header("Content-Type","application/json"));
+            headerlist.add(new Header(headerType, headerMediaType));
 //            headerlist.add(new Header("device-id","1"));
 //            headerlist.add(new Header("user-agents","postman"));
 //            headerlist.add(new Header("device-type","web")); //check this

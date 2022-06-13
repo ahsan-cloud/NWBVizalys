@@ -1,0 +1,18 @@
+
+{
+    "customerId": 2,
+    "noteDate": "2022-04-15",
+    "campusId": 2,
+    "creditNoteLines": [
+        {
+            "itemId": 1,
+            "description": "www",
+            "price": "1400.436",
+            "quantity": "2",
+            "tax": 5,
+            "accountId": "11120000-5566-7788-99aa-bbccddeeff00",
+            "warehouseId": 1
+        }
+    ],
+    "isSubmit": false
+}

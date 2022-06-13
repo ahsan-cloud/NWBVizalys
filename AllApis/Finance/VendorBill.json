@@ -1,0 +1,29 @@
+{
+    "vendorId": 2,
+    "billDate": "2022-04-17T19:00:00.000Z",
+    "dueDate": "2022-04-18T19:00:00.000Z",
+    "campusId": 3,
+    "billLines": [
+        {
+            "itemId": 2,
+            "description": "sss",
+            "cost": 1200.45,
+            "quantity": "2",
+            "tax": 5,
+            "anyOtherTax": "2",
+            "accountId": "11130000-5566-7788-99aa-bbccddeeff00",
+            "warehouseId": 1
+        },
+        {
+            "itemId": 1,
+            "description": "sss",
+            "cost": 1300.45,
+            "quantity": "2",
+            "tax": 5,
+            "anyOtherTax": "2",
+            "accountId": "52130000-5566-7788-99aa-bbccddeeff00",
+            "warehouseId": 2
+        }
+    ],
+    "isSubmit": false
+}

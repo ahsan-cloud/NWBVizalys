@@ -1,0 +1,11 @@
+{
+    "id": 0,
+    "productName": "Juicers",
+    "productType": 0,
+    "categoryId": 1,
+    "categoryName": "Electronics",
+    "salesPrice": "12000.354",
+    "purchasePrice": "11000.454",
+    "salesTax": "5",
+    "barcode": "abcd"
+}

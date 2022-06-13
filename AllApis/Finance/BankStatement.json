@@ -1,0 +1,23 @@
+{
+    "bankAccountId": 2,
+    "description": "abc",
+    "openingBalance": 150.56,
+    "bankStmtLines": [
+        {
+            "id": 0,
+            "reference": 12,
+            "stmtDate": "2022-05-12T19:00:00.000Z",
+            "label": "Label",
+            "credit": 100,
+            "debit": 0
+        },
+        {
+            "id": 0,
+            "reference": 32,
+            "stmtDate": "2022-05-12T19:00:00.000Z",
+            "label": "Label",
+            "debit": 50,
+            "credit": 0
+        }
+    ]
+}

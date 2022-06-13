@@ -1,0 +1,28 @@
+{
+    "customerId": 2,
+    "invoiceDate": "2022-05-13",
+    "campusId": 1,
+    "contact": "",
+    "dueDate": "2022-05-14",
+    "invoiceLines": [
+        {
+            "itemId": 1,
+            "description": "abc",
+            "price": 12000.35,
+            "quantity": "1",
+            "tax": 5,
+            "accountId": "11130000-5566-7788-99aa-bbccddeeff00",
+            "warehouseId": 1
+        },
+        {
+            "itemId": 2,
+            "description": "bcd",
+            "price": 12000.35,
+            "quantity": "2",
+            "tax": 5,
+            "accountId": "52170000-5566-7788-99aa-bbccddeeff00",
+            "warehouseId": 1
+        }
+    ],
+    "isSubmit": false
+}

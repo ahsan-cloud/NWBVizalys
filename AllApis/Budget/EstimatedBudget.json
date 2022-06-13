@@ -1,0 +1,37 @@
+{
+    "id": 0,
+    "budgetId": 1,
+    "estimatedBudgetName": "Estimated API",
+    "from": "2021-06-01T00:00:00",
+    "to": "2022-06-30T00:00:00",
+    "estimatedBudgetLines": [
+        {
+            "accountId": "52110000-5566-7788-99aa-bbccddeeff00",
+            "amount": 50000,
+            "calculationType": 1,
+            "value": 100,
+            "estimatedValue": 50100
+        },
+        {
+            "accountId": "11120000-5566-7788-99aa-bbccddeeff00",
+            "amount": 100000,
+            "calculationType": 1,
+            "value": 100,
+            "estimatedValue": 100100
+        },
+        {
+            "accountId": "11130000-5566-7788-99aa-bbccddeeff00",
+            "amount": 60000,
+            "calculationType": 1,
+            "value": 100,
+            "estimatedValue": 60100
+        },
+        {
+            "accountId": "52120000-5566-7788-99aa-bbccddeeff00",
+            "amount": 80000,
+            "calculationType": 1,
+            "value": 100,
+            "estimatedValue": 80100
+        }
+    ]
+}

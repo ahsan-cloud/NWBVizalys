@@ -1,0 +1,16 @@
+{
+    "paymentRegisterType": 2,
+    "paymentType": 1,
+    "businessPartnerId": 1,
+    "accountId": "7183e9ca-44e4-4ae3-af92-08da31a737df",
+    "paymentDate": "2022-04-15",
+    "paymentRegisterId": "7ce6887a-4204-42ad-af93-08da31a737df",
+    "campusId": 1,
+    "description": "abc",
+    "grossPayment": "1160.365",
+    "discount": "10",
+    "salesTax": "5",
+    "incomeTax": "5",
+    "srbTax": "5",
+    "isSubmit": true
+}

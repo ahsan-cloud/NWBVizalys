@@ -1,0 +1,16 @@
+{
+    "paymentRegisterType": 2,
+    "paymentType": 0,
+    "businessPartnerId": 8,
+    "accountId": "22160000-5566-7788-99aa-bbccddeeff00",
+    "paymentDate": "2022-06-08",
+    "paymentRegisterId": "189c1298-ed9e-459a-2120-08da479543c5",
+    "campusId": 1,
+    "description": "eee",
+    "grossPayment": 12000,
+    "discount": 100,
+    "salesTax": 50,
+    "incomeTax": 50,
+    "srbTax": 20,
+    "isSubmit": false
+}

@@ -1,0 +1,26 @@
+{
+    "vendorId": 1,
+    "noteDate": "2022-04-18",
+    "campusId": 2,
+    "debitNoteLines": [
+        {
+            "itemId": 1,
+            "description": "ddd",
+            "cost": "650.346",
+            "quantity": "2",
+            "tax": "2",
+            "accountId": "52110000-5566-7788-99aa-bbccddeeff00",
+            "warehouseId": 1
+        },
+        {
+            "itemId": 1,
+            "description": "ddd",
+            "cost": "850.347",
+            "quantity": "2",
+            "tax": "2",
+            "accountId": "52160000-5566-7788-99aa-bbccddeeff00",
+            "warehouseId": 1
+        }
+    ],
+    "isSubmit": false
+}
