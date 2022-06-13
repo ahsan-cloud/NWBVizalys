@@ -4286,7 +4286,7 @@ class ApiTest {
             //r.prettyPrint();
             String body = r.getBody().asString();
             //ResponseBody  body = r.getBody();
-            //System.out.println(body);
+            System.out.println(body);
 
 //            int statusCode = r.getStatusCode();
 //            System.out.println(statusCode);
